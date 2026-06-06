@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NexMart — Premium Multi-Vendor Store</title>
+
+  <!-- =============================================
+       GOOGLE FONTS
+       - "Playfair Display" untuk judul besar (elegan)
+       - "DM Sans" untuk teks biasa (clean & modern)
+  ============================================= -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =============================================
+       NAVBAR
+  ============================================= -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+
+      <!-- Logo -->
+      <a href="#" class="navbar-logo">Ven<span>dora</span></a>
+
+      <!-- Menu navigasi (di desktop) -->
+      <ul class="navbar-menu" id="navMenu">
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#categories">Kategori</a></li>
+        <li><a href="#products">Produk</a></li>
+        <li><a href="#vendors">Vendor</a></li>
+        <li><a href="#">Tentang</a></li>
+      </ul>
+
+      <!-- Ikon kanan -->
+      <div class="navbar-icons">
+        <button title="Cari">🔍</button>
+        <button title="Wishlist">🤍</button>
+        <!-- Tombol cart dengan badge jumlah item -->
+        <button title="Keranjang" onclick="window.location.href='cart.html'">
+          🛒
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <!-- Tombol hamburger (muncul di mobile) -->
+        <button class="navbar-toggle" id="navToggle" title="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- =============================================
+       ANNOUNCEMENT BAR
+       Baris promo singkat
+  ============================================= -->
+  <div class="announcement">
+    🎉 Gratis ongkir untuk pembelian pertama! Gunakan kode: <strong>Vendora</strong> &nbsp;|&nbsp; Belanja sekarang dan hemat lebih banyak
+  </div>
+
+  <!-- =============================================
+       HERO SECTION
+  ============================================= -->
+  <section class="hero">
+
+    <!-- Konten teks kiri -->
+    <div class="hero-content">
+      <span class="hero-tag">✦ Multi-Vendor Marketplace</span>
+      <h1 class="hero-title">
+        Temukan Produk<br>
+        <em>Premium</em> dari<br>
+        Ribuan Vendor
+      </h1>
+      <p class="hero-desc">
+        Belanja lebih mudah, pilihan lebih banyak. Dari furniture elegan hingga fashion terkini — semuanya ada di Vendora.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+          Belanja Sekarang
+        </button>
+        <button class="btn-outline" onclick="document.getElementById('vendors').scrollIntoView({behavior:'smooth'})">
+          Jelajahi Vendor →
+        </button>
+      </div>
+
+      <!-- Statistik singkat -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <strong>2.4K+</strong>
+          <span>Vendor Aktif</span>
+        </div>
+        <div class="stat-item">
+          <strong>50K+</strong>
+          <span>Produk</span>
+        </div>
+        <div class="stat-item">
+          <strong>98%</strong>
+          <span>Kepuasan</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual gambar produk kanan -->
+    <div class="hero-visual">
+      <!-- Kartu kecil atas kiri -->
+      <div class="hero-img-small">
+        <div class="img-placeholder img-2">Sofa Modern</div>
+      </div>
+
+      <!-- Kartu besar tengah -->
+      <div class="hero-img-main">
+        <div class="img-placeholder img-1" style="height:100%; align-items:flex-end">
+          Koleksi Terbaru
+        </div>
+      </div>
+
+      <!-- Kartu kecil bawah kanan -->
+      <div class="hero-img-small">
+        <div class="img-placeholder img-3">Sneakers</div>
+      </div>
+
+      <!-- Chip harga mengambang -->
+      <div class="hero-price-chip">
+        <span class="price-label">Mulai dari</span>
+        Rp 99.000
+      </div>
+    </div>
+
+  </section>
+
+  <!-- =============================================
+       CATEGORIES SECTION
+  ============================================= -->
+  <section class="categories" id="categories">
+    <div class="section-header">
+      <p class="section-label">Jelajahi</p>
+      <h2 class="section-title">Belanja Berdasarkan Kategori</h2>
+      <p class="section-desc">Temukan produk sesuai kebutuhan kamu</p>
+    </div>
+
+    <!-- Grid kategori — dibuat dari JS di bawah -->
+    <div class="categories-grid" id="categoriesGrid"></div>
+  </section>
+
+  <!-- =============================================
+       FEATURED PRODUCTS SECTION
+  ============================================= -->
+  <section class="products" id="products">
+    <div class="products-inner">
+      <div class="products-top">
+        <div class="section-header" style="text-align:left; margin-bottom:0">
+          <p class="section-label">Pilihan Editor</p>
+          <h2 class="section-title">Produk Unggulan</h2>
+        </div>
+        <a href="products.html" class="btn-outline" style="white-space:nowrap; display:inline-block">
+          Lihat Semua →
+        </a>
+      </div>
+
+      <!-- Grid produk — dibuat dari JS di bawah -->
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       PROMO BANNER SECTION
+  ============================================= -->
+  <section class="promo-banner">
+    <div class="promo-grid">
+
+      <!-- Banner 1 -->
+      <div class="promo-card promo-card-1">
+        <p class="promo-label">⚡ Flash Sale Hari Ini</p>
+        <h3 class="promo-title">Diskon Hingga<br>70% Off!</h3>
+        <button class="promo-btn">
+          Klaim Sekarang <span>→</span>
+        </button>
+      </div>
+
+      <!-- Banner 2 -->
+      <div class="promo-card promo-card-2">
+        <p class="promo-label">🏠 Koleksi Baru</p>
+        <h3 class="promo-title">Furniture<br>Premium 2025</h3>
+        <button class="promo-btn">
+          Lihat Koleksi <span>→</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =============================================
+       VENDORS SECTION
+  ============================================= -->
+  <section class="vendors" id="vendors">
+    <div class="vendors-inner">
+      <div class="section-header">
+        <p class="section-label">Terpercaya</p>
+        <h2 class="section-title">Vendor Terbaik Kami</h2>
+        <p class="section-desc">Berbelanja langsung dari vendor pilihan yang telah terverifikasi</p>
+      </div>
+
+      <!-- Grid vendor — dibuat dari JS di bawah -->
+      <div class="vendors-grid" id="vendorsGrid"></div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       NEWSLETTER SECTION
+  ============================================= -->
+  <section class="newsletter">
+    <div class="section-header">
+      <p class="section-label">Newsletter</p>
+      <h2 class="section-title">Dapatkan Penawaran Eksklusif</h2>
+      <p class="section-desc">Daftar dan dapatkan diskon 15% untuk pembelian pertama kamu</p>
+    </div>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Masukkan email kamu..." id="emailInput"/>
+      <button class="btn-primary" onclick="subscribeNewsletter()">Daftar</button>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+
+        <!-- Kolom 1: Info toko -->
+        <div>
+          <div class="footer-logo">Ven<span>dora</span></div>
+          <p class="footer-desc">
+            Platform belanja multi-vendor terpercaya dengan ribuan produk pilihan dari vendor terbaik di seluruh Indonesia.
+          </p>
+          <div class="social-links">
+            <button class="social-btn">📘</button>
+            <button class="social-btn">📷</button>
+            <button class="social-btn">🐦</button>
+            <button class="social-btn">▶️</button>
+          </div>
+        </div>
+
+        <!-- Kolom 2 -->
+        <div class="footer-col">
+          <h4>Belanja</h4>
+          <ul>
+            <li><a href="#">Semua Produk</a></li>
+            <li><a href="#">Flash Sale</a></li>
+            <li><a href="#">Produk Baru</a></li>
+            <li><a href="#">Terlaris</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3 -->
+        <div class="footer-col">
+          <h4>Vendor</h4>
+          <ul>
+            <li><a href="#">Daftar Vendor</a></li>
+            <li><a href="#">Dashboard Vendor</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+            <li><a href="#">Panduan Berjualan</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 4 -->
+        <div class="footer-col">
+          <h4>Bantuan</h4>
+          <ul>
+            <li><a href="#">Pusat Bantuan</a></li>
+            <li><a href="#">Cara Pemesanan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Kontak Kami</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer bawah -->
+      <div class="footer-bottom">
+        <span>© 2025 Vendora. Hak cipta dilindungi.</span>
+        <span>Dibuat dengan ❤️ oleh Tim Vendora</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notifikasi -->
+  <div class="toast" id="toast">
+    <span>✅</span>
+    <span id="toastMsg">Produk ditambahkan ke keranjang!</span>
+  </div>
+
+
+  <!-- =============================================
+       JAVASCRIPT
+       Semua logika interaksi halaman
+  ============================================= -->
+  <script src="script.js"></script>
+
+</body>
+</html>
