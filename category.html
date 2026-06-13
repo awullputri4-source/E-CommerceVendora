@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kategori — Vendora</title>
+
+  <!-- =============================================
+       GOOGLE FONTS
+       - "Playfair Display" untuk judul besar (elegan)
+       - "DM Sans" untuk teks biasa (clean & modern)
+  ============================================= -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+
+  <!-- Custom styles (design system Vendora) -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =============================================
+       CATEGORY PAGE — Override & Tambahan Desain
+       Memperbaiki layout & tampilan yang kurang rapi
+    ============================================= */
+
+    /* ---------- HERO KATEGORI ---------- */
+    .cat-hero {
+      margin-top: 68px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 50%, #1a1a1a 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 3.5rem 0 0;
+    }
+
+    /* Pola dekoratif latar */
+    .cat-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 50%, rgba(200,169,110,0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(200,169,110,0.08) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .cat-hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Breadcrumb di dalam hero */
+    .cat-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 2rem;
+    }
+    .cat-breadcrumb a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cat-breadcrumb a:hover { color: var(--accent); }
+    .cat-breadcrumb .sep { opacity: 0.4; }
+    .cat-breadcrumb .current { color: var(--accent); font-weight: 600; }
+
+    /* Konten tengah hero */
+    .cat-hero-body {
+      display: flex;
+      align-items: flex-end;
+      gap: 2.5rem;
+      padding-bottom: 2.8rem;
+    }
+
+    /* Ikon kategori besar */
+    .cat-hero-icon-ring {
+      width: 88px;
+      height: 88px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(200,169,110,0.25), rgba(200,169,110,0.1));
+      border: 1.5px solid rgba(200,169,110,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      flex-shrink: 0;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Teks info kategori */
+    .cat-hero-text { flex: 1; }
+
+    .cat-hero-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .cat-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+
+    .cat-hero-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      max-width: 480px;
+    }
+
+    /* Badge jumlah produk di kanan */
+    .cat-hero-stat {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .cat-hero-stat .big-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .cat-hero-stat .big-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.2rem;
+    }
+
+    /* Garis bawah hero lengkung */
+    .cat-hero-wave {
+      display: block;
+      width: 100%;
+      height: 48px;
+      margin-top: -1px;
+    }
+
+    /* ---------- CATEGORY CHIPS STRIP ---------- */
+    .cat-chips-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--gray-light);
+      position: sticky;
+      top: 68px;
+      z-index: 90;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .cat-chips-bar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      height: 52px;
+    }
+    .cat-chips-bar-inner::-webkit-scrollbar { display: none; }
+
+    .cat-chips-bar-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      white-space: nowrap;
+      padding-right: 0.5rem;
+      border-right: 1px solid var(--gray-light);
+      margin-right: 0.25rem;
+    }
+
+    .cat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gray);
+      background: transparent;
+      border: 1.5px solid var(--gray-light);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .cat-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent-dark);
+      background: rgba(200,169,110,0.06);
+    }
+
+    .cat-chip.active {
+      background: var(--dark);
+      border-color: var(--dark);
+      color: #fff;
+    }
+
+    /* ---------- MAIN LAYOUT ---------- */
+    .cat-main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* ---------- SIDEBAR FILTER ---------- */
+    .cat-sidebar {
+      position: sticky;
+      top: calc(68px + 52px + 1.5rem);
+    }
+
+    /* Kartu filter utama */
+    .filter-card {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--gray-light);
+      overflow: hidden;
+    }
+
+    /* Header filter */
+    .filter-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid var(--gray-light);
+      background: var(--cream);
+    }
+
+    .filter-header-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-reset {
+      font-size: 0.75rem;
+      color: var(--gray);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-weight: 500;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .filter-reset:hover {
+      color: var(--accent-dark);
+      background: rgba(200,169,110,0.1);
+    }
+
+    /* Setiap grup filter */
+    .filter-group {
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid var(--gray-light);
+    }
+    .filter-group:last-child { border-bottom: none; }
+
+    .filter-group-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.9rem;
+    }
+
+    /* Item radio/checkbox filter */
+    .filter-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 7px 8px;
+      margin: 0 -8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+      font-size: 0.85rem;
+      color: var(--dark-soft);
+      user-select: none;
+    }
+    .filter-item:hover { background: var(--cream); }
+    .filter-item:has(input:checked) {
+      background: rgba(200,169,110,0.1);
+      color: var(--dark);
+      font-weight: 600;
+    }
+    .filter-item input {
+      accent-color: var(--accent);
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Badge harga di samping label */
+    .filter-item-count {
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: var(--gray);
+      background: var(--gray-light);
+      padding: 1px 7px;
+      border-radius: 100px;
+    }
+
+    /* ---------- AREA PRODUK ---------- */
+    .cat-products-area { min-width: 0; }
+
+    /* Toolbar atas grid */
+    .cat-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .cat-result-text {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+    .cat-result-text strong {
+      color: var(--dark);
+      font-weight: 700;
+    }
+
+    /* Dropdown sort — lebih rapi */
+    .cat-sort-select {
+      padding: 8px 36px 8px 14px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--dark);
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a7a7a'/%3E%3C/svg%3E") no-repeat right 14px center;
+      appearance: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .cat-sort-select:focus, .cat-sort-select:hover {
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    /* Toggle tampilan grid/list */
+    .view-toggle {
+      display: flex;
+      gap: 0.25rem;
+    }
+    .view-btn {
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--gray);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .view-btn.active, .view-btn:hover {
+      border-color: var(--dark);
+      color: var(--dark);
+      background: var(--cream);
+    }
+
+    /* Chip filter aktif */
+    .active-filters-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .active-filters-row:empty { display: none; }
+
+    .af-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: rgba(200,169,110,0.12);
+      border: 1px solid rgba(200,169,110,0.3);
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .af-chip:hover { background: rgba(200,169,110,0.22); }
+    .af-chip .x { font-size: 0.65rem; opacity: 0.7; }
+
+    .af-clear-all {
+      font-size: 0.78rem;
+      color: var(--gray);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-weight: 500;
+      text-decoration: underline;
+      padding: 5px 0;
+    }
+
+    /* Grid produk — 3 kolom di area konten */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    /* Mode list (toggle view) */
+    .cat-grid.list-mode {
+      grid-template-columns: 1fr;
+    }
+
+    .cat-grid.list-mode .product-card {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+    }
+    .cat-grid.list-mode .product-img {
+      height: 100%;
+      min-height: 160px;
+    }
+
+    /* Animasi masuk kartu produk */
+    @keyframes fadeInCard {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .cat-grid .product-card {
+      animation: fadeInCard 0.4s ease both;
+    }
+    .cat-grid .product-card:nth-child(1)  { animation-delay: 0.03s; }
+    .cat-grid .product-card:nth-child(2)  { animation-delay: 0.07s; }
+    .cat-grid .product-card:nth-child(3)  { animation-delay: 0.11s; }
+    .cat-grid .product-card:nth-child(4)  { animation-delay: 0.15s; }
+    .cat-grid .product-card:nth-child(5)  { animation-delay: 0.19s; }
+    .cat-grid .product-card:nth-child(6)  { animation-delay: 0.23s; }
+
+    /* ---------- EMPTY STATE ---------- */
+    .cat-empty {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 2rem;
+      background: #fff;
+      border: 2px dashed var(--gray-light);
+      border-radius: 20px;
+    }
+    .cat-empty.show { display: flex; }
+    .cat-empty-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.2rem;
+      opacity: 0.5;
+    }
+    .cat-empty h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    .cat-empty p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      max-width: 340px;
+      margin: 0 auto 1.4rem;
+      line-height: 1.7;
+    }
+    .cat-empty-btn {
+      padding: 10px 28px;
+      border-radius: 100px;
+      background: var(--dark);
+      color: white;
+      border: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .cat-empty-btn:hover { background: var(--accent-dark); }
+
+    /* ---------- FILTER DRAWER (MOBILE) ---------- */
+    .filter-drawer-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 900;
+      backdrop-filter: blur(3px);
+    }
+    .filter-drawer-overlay.open { display: block; }
+
+    .filter-drawer {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 300px;
+      max-width: 90vw;
+      background: #fff;
+      z-index: 901;
+      overflow-y: auto;
+      transform: translateX(-100%);
+      transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 4px 0 40px rgba(0,0,0,0.15);
+    }
+    .filter-drawer.open { transform: translateX(0); }
+
+    .filter-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.4rem;
+      border-bottom: 1px solid var(--gray-light);
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 2;
+    }
+    .filter-drawer-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .filter-drawer-close {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--gray);
+      line-height: 1;
+      padding: 2px;
+    }
+
+    /* Tombol buka filter di mobile */
+    .cat-filter-mobile-btn {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 8px 18px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 100px;
+      background: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--dark);
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .cat-filter-mobile-btn:hover { border-color: var(--accent); }
+    .filter-count-badge {
+      background: var(--accent);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .cat-main {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1.5rem 4rem;
+      }
+      .cat-sidebar { display: none; }
+      .cat-filter-mobile-btn { display: inline-flex; }
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .cat-hero-stat { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .cat-hero-body { flex-direction: column; align-items: flex-start; }
+      .cat-hero-icon-ring { width: 68px; height: 68px; font-size: 2rem; }
+      .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+      .cat-chips-bar-inner { padding: 0 1rem; }
+      .cat-hero-inner { padding: 0 1.2rem; }
+      .cat-main { padding: 1.2rem 1rem 3rem; }
+    }
+
+    @media (max-width: 400px) {
+      .cat-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =============================================
+       NAVBAR (sama seperti index.html)
+  ============================================= -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Ven<span>dora</span></a>
+      <ul class="navbar-menu" id="navMenu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#categories">Kategori</a></li>
+        <li><a href="index.html#products">Produk</a></li>
+        <li><a href="index.html#vendors">Vendor</a></li>
+        <li><a href="#">Tentang</a></li>
+      </ul>
+      <div class="navbar-icons">
+        <button title="Cari"><i class="bi bi-search"></i></button>
+        <button title="Wishlist"><i class="bi bi-heart"></i></button>
+        <button title="Keranjang" onclick="window.location.href='cart.html'">
+          <i class="bi bi-bag"></i>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button class="navbar-toggle" id="navToggle" title="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       HERO KATEGORI — Desain baru: gelap, elegan
+  ============================================= -->
+  <div class="cat-hero">
+    <div class="cat-hero-inner">
+
+      <!-- Breadcrumb di dalam hero -->
+      <nav class="cat-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Beranda</a>
+        <span class="sep">/</span>
+        <a href="index.html#categories">Kategori</a>
+        <span class="sep">/</span>
+        <span class="current" id="breadcrumbCategory">Semua Kategori</span>
+      </nav>
+
+      <!-- Badan hero -->
+      <div class="cat-hero-body">
+
+        <!-- Ikon kategori -->
+        <div class="cat-hero-icon-ring" id="categoryHeroIcon">🛋️</div>
+
+        <!-- Judul & deskripsi -->
+        <div class="cat-hero-text">
+          <p class="cat-hero-label">Jelajahi Koleksi</p>
+          <h1 class="cat-hero-title" id="categoryHeroTitle">Kategori</h1>
+          <p class="cat-hero-desc" id="categoryHeroDesc">Temukan produk terbaik pilihan vendor terpercaya</p>
+        </div>
+
+        <!-- Angka total produk (desktop only) -->
+        <div class="cat-hero-stat">
+          <div class="big-num" id="categoryHeroCount">0</div>
+          <div class="big-label">Produk Tersedia</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Transisi lengkung ke bawah -->
+    <svg class="cat-hero-wave" viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0,24 C360,48 1080,0 1440,24 L1440,48 L0,48 Z" fill="#f5f0e8"/>
+    </svg>
+  </div>
+
+  <!-- =============================================
+       CHIP NAVIGASI KATEGORI
+       Bar kategori cepat, sticky di bawah navbar
+  ============================================= -->
+  <div class="cat-chips-bar">
+    <div class="cat-chips-bar-inner">
+      <span class="cat-chips-bar-label">Kategori</span>
+      <div id="categoryChips" style="display:flex;gap:0.5rem;align-items:center;">
+        <!-- Diisi oleh JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       MAIN LAYOUT: SIDEBAR + GRID
+  ============================================= -->
+  <div class="cat-main">
+
+    <!-- ========= SIDEBAR (DESKTOP) ========= -->
+    <aside class="cat-sidebar">
+      <div class="filter-card">
+
+        <!-- Header filter -->
+        <div class="filter-header">
+          <span class="filter-header-title">
+            <i class="bi bi-sliders"></i> Filter
+          </span>
+          <button class="filter-reset" id="resetFilterBtn">Reset semua</button>
+        </div>
+
+        <!-- Grup: Urutkan -->
+        <div class="filter-group">
+          <p class="filter-group-title">Urutkan</p>
+          <div id="sortOptions">
+            <label class="filter-item">
+              <input type="radio" name="sort" value="default" checked>
+              <span>Paling Relevan</span>
+            </label>
+            <label class="filter-item">
+              <input type="radio" name="sort" value="price-asc">
+              <span>Harga: Rendah ke Tinggi</span>
+            </label>
+            <label class="filter-item">
+              <input type="radio" name="sort" value="price-desc">
+              <span>Harga: Tinggi ke Rendah</span>
+            </label>
+            <label class="filter-item">
+              <input type="radio" name="sort" value="rating">
+              <span>Rating Tertinggi</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Grup: Rentang Harga -->
+        <div class="filter-group">
+          <p class="filter-group-title">Rentang Harga</p>
+          <div id="priceOptions">
+            <label class="filter-item">
+              <input type="radio" name="price" value="all" checked>
+              <span>Semua Harga</span>
+            </label>
+            <label class="filter-item">
+              <input type="radio" name="price" value="0-400000">
+              <span>Di bawah Rp 400.000</span>
+            </label>
+            <label class="filter-item">
+              <input type="radio" name="price" value="400000-1000000">
+              <span>Rp 400.000 — Rp 1.000.000</span>
+            </label>
+            <label class="filter-item">
+              <input type="radio" name="price" value="1000000-999999999">
+              <span>Di atas Rp 1.000.000</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Grup: Status -->
+        <div class="filter-group">
+          <p class="filter-group-title">Status Produk</p>
+          <div id="statusOptions">
+            <label class="filter-item">
+              <input type="checkbox" value="sale">
+              <span>Sedang Diskon</span>
+              <span class="filter-item-count">🔥</span>
+            </label>
+            <label class="filter-item">
+              <input type="checkbox" value="new">
+              <span>Produk Baru</span>
+              <span class="filter-item-count">✨</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- ========= AREA PRODUK ========= -->
+    <div class="cat-products-area">
+
+      <!-- Toolbar atas -->
+      <div class="cat-toolbar">
+        <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+          <!-- Tombol buka filter (mobile only) -->
+          <button class="cat-filter-mobile-btn" id="openFilterDrawer">
+            <i class="bi bi-sliders"></i> Filter
+            <span class="filter-count-badge" id="filterCountBadge" style="display:none">0</span>
+          </button>
+          <!-- Teks hasil -->
+          <span class="cat-result-text">Menampilkan <strong id="resultCount">0</strong> produk</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <!-- Toggle view grid/list -->
+          <div class="view-toggle">
+            <button class="view-btn active" id="viewGrid" title="Grid">
+              <i class="bi bi-grid-3x3-gap-fill"></i>
+            </button>
+            <button class="view-btn" id="viewList" title="List">
+              <i class="bi bi-list-ul"></i>
+            </button>
+          </div>
+          <!-- Dropdown sort (selalu tampil) -->
+          <select class="cat-sort-select" id="sortSelectMobile">
+            <option value="default">Paling Relevan</option>
+            <option value="price-asc">Harga Terendah</option>
+            <option value="price-desc">Harga Tertinggi</option>
+            <option value="rating">Rating Tertinggi</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Chip filter aktif -->
+      <div class="active-filters-row" id="activeFilters"></div>
+
+      <!-- Grid produk -->
+      <div class="cat-grid" id="categoryProductsGrid"></div>
+
+      <!-- Empty state -->
+      <div class="cat-empty" id="emptyState">
+        <div class="cat-empty-icon">🔍</div>
+        <h3>Produk Tidak Ditemukan</h3>
+        <p>Tidak ada produk yang cocok dengan filter yang dipilih. Coba ubah atau reset filter.</p>
+        <button class="cat-empty-btn" id="emptyResetBtn">Reset Filter</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =============================================
+       FILTER DRAWER (MOBILE)
+  ============================================= -->
+  <div class="filter-drawer-overlay" id="filterOverlay"></div>
+  <div class="filter-drawer" id="filterDrawer">
+    <div class="filter-drawer-header">
+      <span class="filter-drawer-title"><i class="bi bi-sliders me-2"></i>Filter Produk</span>
+      <button class="filter-drawer-close" id="closeFilterDrawer">×</button>
+    </div>
+
+    <!-- Isi filter sama dengan sidebar desktop (disinkron via JS) -->
+    <div class="filter-group" style="border-top:none">
+      <p class="filter-group-title">Urutkan</p>
+      <div id="sortOptionsMobile">
+        <label class="filter-item"><input type="radio" name="sortMob" value="default" checked><span>Paling Relevan</span></label>
+        <label class="filter-item"><input type="radio" name="sortMob" value="price-asc"><span>Harga: Rendah ke Tinggi</span></label>
+        <label class="filter-item"><input type="radio" name="sortMob" value="price-desc"><span>Harga: Tinggi ke Rendah</span></label>
+        <label class="filter-item"><input type="radio" name="sortMob" value="rating"><span>Rating Tertinggi</span></label>
+      </div>
+    </div>
+    <div class="filter-group">
+      <p class="filter-group-title">Rentang Harga</p>
+      <div id="priceOptionsMobile">
+        <label class="filter-item"><input type="radio" name="priceMob" value="all" checked><span>Semua Harga</span></label>
+        <label class="filter-item"><input type="radio" name="priceMob" value="0-400000"><span>Di bawah Rp 400.000</span></label>
+        <label class="filter-item"><input type="radio" name="priceMob" value="400000-1000000"><span>Rp 400.000 — Rp 1.000.000</span></label>
+        <label class="filter-item"><input type="radio" name="priceMob" value="1000000-999999999"><span>Di atas Rp 1.000.000</span></label>
+      </div>
+    </div>
+    <div class="filter-group">
+      <p class="filter-group-title">Status Produk</p>
+      <div id="statusOptionsMobile">
+        <label class="filter-item"><input type="checkbox" class="mob-status" value="sale"><span>Sedang Diskon 🔥</span></label>
+        <label class="filter-item"><input type="checkbox" class="mob-status" value="new"><span>Produk Baru ✨</span></label>
+      </div>
+    </div>
+
+    <div style="padding:1.2rem 1.4rem; position:sticky; bottom:0; background:#fff; border-top:1px solid var(--gray-light);">
+      <button class="cat-empty-btn w-100" id="applyFilterDrawer" style="width:100%">Terapkan Filter</button>
+    </div>
+  </div>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Ven<span>dora</span></div>
+          <p class="footer-desc">Platform belanja multi-vendor terpercaya dengan ribuan produk pilihan dari vendor terbaik di seluruh Indonesia.</p>
+          <div class="social-links">
+            <button class="social-btn">📘</button>
+            <button class="social-btn">📷</button>
+            <button class="social-btn">🐦</button>
+            <button class="social-btn">▶️</button>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Belanja</h4>
+          <ul>
+            <li><a href="#">Semua Produk</a></li>
+            <li><a href="#">Flash Sale</a></li>
+            <li><a href="#">Produk Baru</a></li>
+            <li><a href="#">Terlaris</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Vendor</h4>
+          <ul>
+            <li><a href="#">Daftar Vendor</a></li>
+            <li><a href="#">Dashboard Vendor</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+            <li><a href="#">Panduan Berjualan</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Bantuan</h4>
+          <ul>
+            <li><a href="#">Pusat Bantuan</a></li>
+            <li><a href="#">Cara Pemesanan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Kontak Kami</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Vendora. Hak cipta dilindungi.</span>
+        <span>Dibuat dengan ❤️ oleh Tim Vendora</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <span>✅</span>
+    <span id="toastMsg">Produk ditambahkan ke keranjang!</span>
+  </div>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script utama Vendora -->
+  <script src="script.js"></script>
+
+  <!-- =============================================
+       SCRIPT TAMBAHAN — Interaktivitas halaman kategori
+       (Filter drawer mobile, toggle view, sinkronisasi filter)
+  ============================================= -->
+  <script>
+    // =============================================
+    // OVERRIDE: Render chips kategori ke format baru
+    // Mengganti fungsi renderCategoryChips dari script.js
+    // =============================================
+    document.addEventListener('DOMContentLoaded', () => {
+      const slug = new URLSearchParams(window.location.search).get('cat') || 'furniture';
+      const chipsContainer = document.getElementById('categoryChips');
+
+      // Render chips navigasi dengan class baru (.cat-chip)
+      if (chipsContainer && typeof categories !== 'undefined') {
+        categories.forEach(cat => {
+          const chip = document.createElement('a');
+          chip.href = `category.html?cat=${cat.slug}`;
+          chip.className = 'cat-chip' + (cat.slug === slug ? ' active' : '');
+          chip.innerHTML = `${cat.icon} ${cat.name}`;
+          chipsContainer.appendChild(chip);
+        });
+      }
+
+      // Perbarui hero count agar hanya tampil angka (bukan "X produk ditemukan")
+      const heroCountEl = document.getElementById('categoryHeroCount');
+      if (heroCountEl && typeof products !== 'undefined') {
+        const count = products.filter(p => p.category === slug).length;
+        heroCountEl.textContent = count;
+      }
+
+      // =============================================
+      // TOGGLE VIEW: Grid ↔ List
+      // =============================================
+      const grid = document.getElementById('categoryProductsGrid');
+      const btnGrid = document.getElementById('viewGrid');
+      const btnList = document.getElementById('viewList');
+
+      if (btnGrid && btnList && grid) {
+        btnGrid.addEventListener('click', () => {
+          grid.classList.remove('list-mode');
+          btnGrid.classList.add('active');
+          btnList.classList.remove('active');
+          // Simpan preferensi
+          localStorage.setItem('vendora_view', 'grid');
+        });
+
+        btnList.addEventListener('click', () => {
+          grid.classList.add('list-mode');
+          btnList.classList.add('active');
+          btnGrid.classList.remove('active');
+          localStorage.setItem('vendora_view', 'list');
+        });
+
+        // Pulihkan preferensi view
+        if (localStorage.getItem('vendora_view') === 'list') {
+          btnList.click();
+        }
+      }
+
+      // =============================================
+      // FILTER DRAWER — Mobile
+      // =============================================
+      const overlay   = document.getElementById('filterOverlay');
+      const drawer    = document.getElementById('filterDrawer');
+      const openBtn   = document.getElementById('openFilterDrawer');
+      const closeBtn  = document.getElementById('closeFilterDrawer');
+      const applyBtn  = document.getElementById('applyFilterDrawer');
+
+      function openDrawer() {
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeDrawer() {
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      if (openBtn)  openBtn.addEventListener('click', openDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      if (overlay)  overlay.addEventListener('click', closeDrawer);
+
+      // Terapkan filter dari drawer ke filter desktop, lalu tutup
+      if (applyBtn) {
+        applyBtn.addEventListener('click', () => {
+          // Sinkronkan sort
+          const sortVal = document.querySelector('input[name="sortMob"]:checked')?.value || 'default';
+          const sortDesktop = document.querySelector(`input[name="sort"][value="${sortVal}"]`);
+          if (sortDesktop) {
+            sortDesktop.checked = true;
+            sortDesktop.dispatchEvent(new Event('change'));
+          }
+          document.getElementById('sortSelectMobile').value = sortVal;
+
+          // Sinkronkan harga
+          const priceVal = document.querySelector('input[name="priceMob"]:checked')?.value || 'all';
+          const priceDesktop = document.querySelector(`input[name="price"][value="${priceVal}"]`);
+          if (priceDesktop) {
+            priceDesktop.checked = true;
+            priceDesktop.dispatchEvent(new Event('change'));
+          }
+
+          // Sinkronkan status (checkbox)
+          const checkedStatus = Array.from(document.querySelectorAll('.mob-status:checked')).map(c => c.value);
+          document.querySelectorAll('#statusOptions input[type="checkbox"]').forEach(cb => {
+            cb.checked = checkedStatus.includes(cb.value);
+            cb.dispatchEvent(new Event('change'));
+          });
+
+          updateFilterBadge();
+          closeDrawer();
+        });
+      }
+
+      // =============================================
+      // UPDATE BADGE FILTER COUNT (tombol mobile)
+      // =============================================
+      function updateFilterBadge() {
+        const badge = document.getElementById('filterCountBadge');
+        if (!badge) return;
+        let count = 0;
+        const price = document.querySelector('input[name="price"]:checked')?.value;
+        if (price && price !== 'all') count++;
+        count += document.querySelectorAll('#statusOptions input:checked').length;
+        if (count > 0) {
+          badge.textContent = count;
+          badge.style.display = 'inline-flex';
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+
+      // Pantau perubahan filter untuk update badge
+      document.querySelectorAll('input[name="price"], #statusOptions input').forEach(el => {
+        el.addEventListener('change', updateFilterBadge);
+      });
+      document.getElementById('resetFilterBtn')?.addEventListener('click', () => {
+        setTimeout(updateFilterBadge, 50);
+      });
+
+      // Pintasan keyboard: tekan Escape untuk tutup drawer
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeDrawer();
+      });
+
+      // =============================================
+      // RENDER ULANG CHIP FILTER AKTIF ke format baru
+      // (Override fungsi renderActiveFilters dari script.js)
+      // =============================================
+      const origRenderActiveFilters = window.renderActiveFilters;
+      // Akan diambil alih setelah DOM siap
+    });
+
+    // =============================================
+    // PATCH: resultCount hanya tampilkan angka,
+    //        categoryHeroCount tampilkan angka juga
+    // =============================================
+    const _origRenderCategoryProducts = window.renderCategoryProducts;
+    // Patch observer — setelah setiap render, perbarui hero count
+    const catObserver = new MutationObserver(() => {
+      const heroCount = document.getElementById('categoryHeroCount');
+      const resultCount = document.getElementById('resultCount');
+      if (heroCount && resultCount) {
+        // Ambil angka dari resultCount
+        const text = resultCount.textContent || '';
+        const match = text.match(/\d+/);
+        if (match && heroCount.textContent !== match[0]) {
+          heroCount.textContent = match[0];
+        }
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const resultEl = document.getElementById('resultCount');
+      if (resultEl) {
+        catObserver.observe(resultEl, { childList: true, subtree: true, characterData: true });
+      }
+    });
+  </script>
+
+</body>
+</html>
