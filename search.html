@@ -26,7 +26,7 @@
        SEARCH PAGE — PREMIUM DESIGN OVERRIDES
     ============================================= */
     .search-hero {
-      margin-top: 68px;
+      margin-top: 0;
       background: linear-gradient(135deg, #121212 0%, #222222 100%);
       position: relative;
       overflow: hidden;
@@ -597,10 +597,10 @@
 
       <!-- Ikon kanan -->
       <div class="navbar-icons">
-        <button title="Cari" onclick="window.location.href='search.html'">🔍</button>
-        <button title="Wishlist">🤍</button>
+        <button title="Cari" onclick="window.location.href='search.html'"><i class="bi bi-search"></i></button>
+        <button title="Wishlist"><i class="bi bi-heart"></i></button>
         <button title="Keranjang" onclick="window.location.href='cart.html'">
-          🛒
+          <i class="bi bi-bag"></i>
           <span class="cart-badge" id="cartBadge">0</span>
         </button>
         <button class="navbar-toggle" id="navToggle" title="Menu">
@@ -631,7 +631,7 @@
       <!-- Input Pencarian -->
       <div class="search-bar-container">
         <div class="search-input-wrapper">
-          <span class="search-input-icon">🔍</span>
+          <i class="bi bi-search search-input-icon"></i>
           <input type="text" class="search-main-input" id="searchMainInput" placeholder="Cari furniture, pakaian, handphone, dll..." autocomplete="off" autofocus />
           <button class="search-clear-btn" id="searchClearBtn" title="Hapus pencarian">✕</button>
         </div>
