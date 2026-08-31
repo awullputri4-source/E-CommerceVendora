@@ -1414,7 +1414,7 @@ let wishlist = JSON.parse(localStorage.getItem('nexmart_wishlist')) || [];
 
 function toggleWishlist(productId, event) {
   if (event) event.stopPropagation();
-  const btn = document.getElementById(`wish-${productId}`) || document.getElementById(`wish-cat-${productId}`);
+  const btn = document.getElementById(`wish-${productId}`) || document.getElementById(`wish-cat-${productId}`) || document.getElementById(`wish-search-${productId}`);
   const idx = wishlist.indexOf(productId);
 
   if (idx === -1) {
@@ -2656,6 +2656,401 @@ function initCheckoutPage() {
 
 
 // =============================================
+// HALAMAN PENCARIAN (search.html)
+// =============================================
+let searchFilters = {
+  sort: 'default',
+  price: 'all',
+  categories: [],
+  vendors: [],
+  status: []
+};
+
+// Fungsi pencarian instan
+function initSearchPage() {
+  const searchInput = document.getElementById('searchMainInput');
+  const clearBtn = document.getElementById('searchClearBtn');
+
+  if (!searchInput) return;
+
+  // Baca query parameter 'q' dari URL
+  const params = new URLSearchParams(window.location.search);
+  const urlQuery = params.get('q') || '';
+  if (urlQuery) {
+    searchInput.value = urlQuery;
+    clearBtn.style.display = 'flex';
+  }
+
+  // Terapkan filter & render awal
+  renderSearchProducts();
+
+  // Event listener input pencarian (Real-time search)
+  searchInput.addEventListener('input', (e) => {
+    const val = e.target.value.trim();
+    if (val) {
+      clearBtn.style.display = 'flex';
+    } else {
+      clearBtn.style.display = 'none';
+    }
+    renderSearchProducts();
+  });
+
+  // Tombol hapus pencarian
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    clearBtn.style.display = 'none';
+    searchInput.focus();
+    renderSearchProducts();
+  });
+
+  // Event listener untuk filter kategori desktop
+  document.querySelectorAll('.filter-cat-chk').forEach(cb => {
+    cb.addEventListener('change', () => {
+      searchFilters.categories = Array.from(document.querySelectorAll('.filter-cat-chk:checked')).map(c => c.value);
+      renderSearchProducts();
+    });
+  });
+
+  // Event listener untuk filter harga desktop
+  document.querySelectorAll('input[name="priceFilter"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      searchFilters.price = e.target.value;
+      renderSearchProducts();
+    });
+  });
+
+  // Event listener untuk filter status desktop
+  document.querySelectorAll('.filter-status-chk').forEach(cb => {
+    cb.addEventListener('change', () => {
+      searchFilters.status = Array.from(document.querySelectorAll('.filter-status-chk:checked')).map(c => c.value);
+      renderSearchProducts();
+    });
+  });
+
+  // Event listener untuk filter vendor desktop
+  document.querySelectorAll('.filter-vendor-chk').forEach(cb => {
+    cb.addEventListener('change', () => {
+      searchFilters.vendors = Array.from(document.querySelectorAll('.filter-vendor-chk:checked')).map(c => c.value);
+      renderSearchProducts();
+    });
+  });
+
+  // Event listener untuk sorting
+  const sortSelect = document.getElementById('searchSortSelect');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', (e) => {
+      searchFilters.sort = e.target.value;
+      renderSearchProducts();
+    });
+  }
+
+  // Tombol reset filter desktop
+  const resetBtn = document.getElementById('resetFiltersBtn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      resetSearchAndFilters();
+    });
+  }
+}
+
+// Fungsi pencarian cepat via tag rekomendasi
+function quickSearch(keyword) {
+  const searchInput = document.getElementById('searchMainInput');
+  const clearBtn = document.getElementById('searchClearBtn');
+  if (searchInput) {
+    searchInput.value = keyword;
+    if (clearBtn) clearBtn.style.display = 'flex';
+    renderSearchProducts();
+  }
+}
+
+// Reset pencarian dan semua filter
+function resetSearchAndFilters() {
+  const searchInput = document.getElementById('searchMainInput');
+  const clearBtn = document.getElementById('searchClearBtn');
+  if (searchInput) searchInput.value = '';
+  if (clearBtn) clearBtn.style.display = 'none';
+
+  // Reset checkboxes desktop
+  document.querySelectorAll('.filter-cat-chk').forEach(cb => cb.checked = false);
+  document.querySelectorAll('.filter-status-chk').forEach(cb => cb.checked = false);
+  document.querySelectorAll('.filter-vendor-chk').forEach(cb => cb.checked = false);
+  
+  // Reset radio harga desktop
+  const allPriceRadio = document.getElementById('price-all');
+  if (allPriceRadio) allPriceRadio.checked = true;
+
+  // Reset checkboxes mobile
+  document.querySelectorAll('.filter-cat-chk-mob').forEach(cb => cb.checked = false);
+  document.querySelectorAll('.filter-status-chk-mob').forEach(cb => cb.checked = false);
+  document.querySelectorAll('.filter-vendor-chk-mob').forEach(cb => cb.checked = false);
+
+  const mobPriceAll = document.getElementById('mob-price-all');
+  if (mobPriceAll) mobPriceAll.checked = true;
+
+  // Reset filter object
+  searchFilters = {
+    sort: 'default',
+    price: 'all',
+    categories: [],
+    vendors: [],
+    status: []
+  };
+
+  const sortSelect = document.getElementById('searchSortSelect');
+  if (sortSelect) sortSelect.value = 'default';
+
+  renderSearchProducts();
+}
+
+// Digunakan oleh mobile filter drawer apply button
+window.triggerSearchRender = function() {
+  renderSearchProducts();
+};
+
+function renderSearchProducts() {
+  const grid = document.getElementById('searchProductsGrid');
+  const emptyState = document.getElementById('searchEmptyState');
+  const resultCountText = document.getElementById('searchResultCount');
+  if (!grid) return;
+
+  const query = (document.getElementById('searchMainInput')?.value || '').trim().toLowerCase();
+
+  // 1. Jalankan penyaringan (Filtering)
+  let list = [...products];
+
+  // Filter teks pencarian (search query)
+  if (query) {
+    list = list.filter(p => 
+      p.name.toLowerCase().includes(query) ||
+      p.description.toLowerCase().includes(query) ||
+      p.category.toLowerCase().includes(query) ||
+      p.vendor.toLowerCase().includes(query)
+    );
+  }
+
+  // Filter kategori
+  if (searchFilters.categories.length > 0) {
+    list = list.filter(p => searchFilters.categories.includes(p.category));
+  }
+
+  // Filter rentang harga
+  if (searchFilters.price !== 'all') {
+    const [min, max] = searchFilters.price.split('-').map(Number);
+    list = list.filter(p => p.price >= min && p.price <= max);
+  }
+
+  // Filter status (new / sale)
+  if (searchFilters.status.length > 0) {
+    list = list.filter(p => searchFilters.status.includes(p.badge));
+  }
+
+  // Filter vendor
+  if (searchFilters.vendors.length > 0) {
+    list = list.filter(p => searchFilters.vendors.includes(p.vendor));
+  }
+
+  // 2. Jalankan pengurutan (Sorting)
+  switch (searchFilters.sort) {
+    case 'price-asc':
+      list.sort((a, b) => a.price - b.price);
+      break;
+    case 'price-desc':
+      list.sort((a, b) => b.price - a.price);
+      break;
+    case 'rating':
+      list.sort((a, b) => {
+        const starsA = (a.rating.match(/★/g) || []).length;
+        const starsB = (b.rating.match(/★/g) || []).length;
+        return starsB - starsA;
+      });
+      break;
+  }
+
+  // 3. Render Hasil Pencarian
+  grid.innerHTML = '';
+
+  // Update text jumlah hasil
+  if (resultCountText) {
+    if (query) {
+      resultCountText.innerHTML = `Menampilkan <strong>${list.length}</strong> hasil untuk <strong>"${query}"</strong>`;
+    } else {
+      resultCountText.innerHTML = `Menampilkan semua produk (<strong>${list.length}</strong> produk)`;
+    }
+  }
+
+  // Update filter badge mobile
+  const mobFilterBadge = document.getElementById('mobileFilterBadge');
+  if (mobFilterBadge) {
+    let appliedCount = 0;
+    if (searchFilters.categories.length > 0) appliedCount += searchFilters.categories.length;
+    if (searchFilters.price !== 'all') appliedCount++;
+    if (searchFilters.status.length > 0) appliedCount += searchFilters.status.length;
+    if (searchFilters.vendors.length > 0) appliedCount += searchFilters.vendors.length;
+
+    if (appliedCount > 0) {
+      mobFilterBadge.textContent = appliedCount;
+      mobFilterBadge.style.display = 'inline-block';
+    } else {
+      mobFilterBadge.style.display = 'none';
+    }
+  }
+
+  // Render filter chips aktif
+  renderSearchActiveChips();
+
+  if (list.length === 0) {
+    if (emptyState) emptyState.classList.add('show');
+    return;
+  }
+  if (emptyState) emptyState.classList.remove('show');
+
+  list.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+
+    const priceFormatted = formatRupiah(product.price);
+    const originalFormatted = product.originalPrice ? formatRupiah(product.originalPrice) : '';
+
+    const badgeHTML = product.badge
+      ? `<span class="product-badge badge-${product.badge}">${product.badgeText}</span>`
+      : '';
+
+    const discountHTML = product.originalPrice
+      ? `<span class="price-original">${originalFormatted}</span>
+         <span class="price-discount">-${product.discount}</span>`
+      : '';
+
+    card.innerHTML = `
+      <div class="product-img">
+        <img src="${product.image}" alt="${product.name}">
+        ${badgeHTML}
+        <button class="wishlist-btn" id="wish-search-${product.id}" onclick="toggleWishlist(${product.id}, event)">
+          <span>🤍</span>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-vendor">${product.vendor}</div>
+        <div class="product-name">${product.name}</div>
+        <div class="product-rating">
+          <span class="stars">${product.rating}</span>
+          <span class="rating-count">(${product.ratingCount})</span>
+        </div>
+        <div class="product-price">
+          <span class="price-current">${priceFormatted}</span>
+          ${discountHTML}
+        </div>
+        <button class="btn-add-cart" onclick="event.stopPropagation(); addToCart(${product.id})">
+          + Tambah ke Keranjang
+        </button>
+      </div>
+    `;
+
+    card.addEventListener('click', () => {
+      window.location.href = `product.html?id=${product.id}`;
+    });
+
+    grid.appendChild(card);
+
+    if (wishlist.includes(product.id)) {
+      const btn = card.querySelector('.wishlist-btn');
+      if (btn) {
+        btn.classList.add('active');
+        btn.querySelector('span').textContent = '❤️';
+      }
+    }
+  });
+}
+
+function renderSearchActiveChips() {
+  const container = document.getElementById('searchActiveFilters');
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  const priceLabels = {
+    '0-400000': 'Di bawah Rp 400.000',
+    '400000-1000000': 'Rp 400.000 — Rp 1.000.000',
+    '1000000-999999999': 'Di atas Rp 1.000.000'
+  };
+  const statusLabels = { sale: 'Sedang Diskon', new: 'Produk Baru' };
+
+  let chips = [];
+
+  // Chips Kategori
+  searchFilters.categories.forEach(cat => {
+    chips.push({ type: 'category', value: cat, label: cat.charAt(0).toUpperCase() + cat.slice(1) });
+  });
+
+  // Chips Harga
+  if (searchFilters.price !== 'all') {
+    chips.push({ type: 'price', value: searchFilters.price, label: priceLabels[searchFilters.price] || 'Harga tertentu' });
+  }
+
+  // Chips Status
+  searchFilters.status.forEach(st => {
+    chips.push({ type: 'status', value: st, label: statusLabels[st] || st });
+  });
+
+  // Chips Vendor
+  searchFilters.vendors.forEach(ven => {
+    chips.push({ type: 'vendor', value: ven, label: ven });
+  });
+
+  if (chips.length === 0) {
+    container.style.display = 'none';
+    return;
+  }
+  container.style.display = 'flex';
+
+  chips.forEach(chip => {
+    const el = document.createElement('div');
+    el.className = 'filter-chip';
+    el.innerHTML = `${chip.label} <span class="filter-chip-remove">✕</span>`;
+
+    el.addEventListener('click', () => {
+      removeSearchFilter(chip.type, chip.value);
+    });
+
+    container.appendChild(el);
+  });
+
+  // Tombol Hapus Semua
+  const clearAll = document.createElement('a');
+  clearAll.className = 'clear-all-filters-link';
+  clearAll.href = '#';
+  clearAll.textContent = 'Hapus Semua Filter';
+  clearAll.addEventListener('click', (e) => {
+    e.preventDefault();
+    resetSearchAndFilters();
+  });
+  container.appendChild(clearAll);
+}
+
+function removeSearchFilter(type, value) {
+  if (type === 'category') {
+    searchFilters.categories = searchFilters.categories.filter(c => c !== value);
+    const cb = document.querySelector(`.filter-cat-chk[value="${value}"]`);
+    if (cb) cb.checked = false;
+  } else if (type === 'price') {
+    searchFilters.price = 'all';
+    const radio = document.getElementById('price-all');
+    if (radio) radio.checked = true;
+  } else if (type === 'status') {
+    searchFilters.status = searchFilters.status.filter(s => s !== value);
+    const cb = document.querySelector(`.filter-status-chk[value="${value}"]`);
+    if (cb) cb.checked = false;
+  } else if (type === 'vendor') {
+    searchFilters.vendors = searchFilters.vendors.filter(v => v !== value);
+    const cb = document.querySelector(`.filter-vendor-chk[value="${value}"]`);
+    if (cb) cb.checked = false;
+  }
+
+  renderSearchProducts();
+}
+
+
+// =============================================
 // INISIALISASI HALAMAN
 // =============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -2682,5 +3077,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCartPage();
   } else if (document.getElementById('checkoutItemsList')) {
     initCheckoutPage();
+  } else if (document.getElementById('searchProductsGrid')) {
+    initSearchPage();
   }
 });
