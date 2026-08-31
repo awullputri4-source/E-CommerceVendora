@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengiriman &amp; Pembayaran — Vendora</title>
+
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =============================================
+       NAVBAR (sama seperti index.html)
+  ============================================= -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Ven<span>dora</span></a>
+
+      <ul class="navbar-menu" id="navMenu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#categories">Kategori</a></li>
+        <li><a href="index.html#products">Produk</a></li>
+        <li><a href="index.html#vendors">Vendor</a></li>
+        <li><a href="#">Tentang</a></li>
+      </ul>
+
+      <div class="navbar-icons">
+        <button title="Cari">🔍</button>
+        <button title="Wishlist">🤍</button>
+        <button title="Keranjang" onclick="window.location.href='cart.html'">
+          🛒
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button class="navbar-toggle" id="navToggle" title="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       CHECKOUT STEPPER
+       Progres: Keranjang (selesai) -> Pengiriman & Pembayaran (aktif) -> Selesai
+  ============================================= -->
+  <div class="checkout-stepper">
+    <div class="checkout-stepper-inner">
+      <div class="stepper-step done">
+        <div class="stepper-circle">1</div>
+        <div class="stepper-label">Keranjang</div>
+      </div>
+      <div class="stepper-line"><div class="stepper-line-fill" style="width:100%"></div></div>
+      <div class="stepper-step active">
+        <div class="stepper-circle">2</div>
+        <div class="stepper-label">Pengiriman &amp; Pembayaran</div>
+      </div>
+      <div class="stepper-line"><div class="stepper-line-fill" style="width:0%"></div></div>
+      <div class="stepper-step">
+        <div class="stepper-circle">3</div>
+        <div class="stepper-label">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       ISI HALAMAN CHECKOUT
+  ============================================= -->
+  <div class="checkout-page-inner">
+    <h1 class="page-heading">Pengiriman &amp; Pembayaran</h1>
+    <p class="page-subheading">Lengkapi data di bawah ini untuk menyelesaikan pesananmu</p>
+
+    <form id="checkoutForm" novalidate>
+      <div class="checkout-layout">
+
+        <!-- ============ KOLOM KIRI: FORM ============ -->
+        <div>
+
+          <!-- ---------- INFORMASI PENGIRIMAN ---------- -->
+          <div class="checkout-section">
+            <div class="checkout-section-title">
+              <iconify-icon icon="solar:map-point-linear"></iconify-icon>
+              Informasi Pengiriman
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="custName">Nama Penerima</label>
+                <input type="text" id="custName" placeholder="Nama lengkap">
+              </div>
+              <div class="form-field">
+                <label for="custPhone">Nomor HP</label>
+                <input type="tel" id="custPhone" placeholder="08xx xxxx xxxx">
+              </div>
+              <div class="form-field full">
+                <label for="custAddress">Alamat Lengkap</label>
+                <textarea id="custAddress" rows="2" placeholder="Nama jalan, nomor rumah, RT/RW, kecamatan"></textarea>
+              </div>
+              <div class="form-field">
+                <label for="custCity">Kota / Kabupaten</label>
+                <input type="text" id="custCity" placeholder="Contoh: Jambi">
+              </div>
+              <div class="form-field">
+                <label for="custPostal">Kode Pos</label>
+                <input type="text" id="custPostal" placeholder="Contoh: 36122">
+              </div>
+              <div class="form-field full">
+                <label for="custNote">Catatan Pesanan <span class="optional">(opsional)</span></label>
+                <textarea id="custNote" rows="2" placeholder="Contoh: titip ke satpam, jangan dilipat, dll"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- ---------- METODE PENGIRIMAN ---------- -->
+          <div class="checkout-section">
+            <div class="checkout-section-title">
+              <iconify-icon icon="solar:delivery-linear"></iconify-icon>
+              Metode Pengiriman
+            </div>
+
+            <div class="method-options">
+              <label class="shipping-method-card active">
+                <input type="radio" name="shippingMethod" value="regular" checked>
+                <div class="method-card-inner">
+                  <div class="method-card-icon"><iconify-icon icon="solar:box-linear"></iconify-icon></div>
+                  <div class="method-card-info">
+                    <strong>Reguler</strong>
+                    <span>Estimasi tiba 2-4 hari kerja</span>
+                  </div>
+                  <div class="method-card-price">Rp 20.000</div>
+                  <div class="method-card-radio-dot"></div>
+                </div>
+              </label>
+
+              <label class="shipping-method-card">
+                <input type="radio" name="shippingMethod" value="express">
+                <div class="method-card-inner">
+                  <div class="method-card-icon"><iconify-icon icon="solar:bolt-linear"></iconify-icon></div>
+                  <div class="method-card-info">
+                    <strong>Express</strong>
+                    <span>Estimasi tiba 1 hari kerja</span>
+                  </div>
+                  <div class="method-card-price">Rp 45.000</div>
+                  <div class="method-card-radio-dot"></div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- ---------- METODE PEMBAYARAN ---------- -->
+          <div class="checkout-section">
+            <div class="checkout-section-title">
+              <iconify-icon icon="solar:wallet-linear"></iconify-icon>
+              Metode Pembayaran
+            </div>
+
+            <div class="method-options">
+              <label class="payment-method-card active">
+                <input type="radio" name="paymentMethod" value="transfer" checked>
+                <div class="method-card-inner">
+                  <div class="method-card-icon"><iconify-icon icon="solar:card-transfer-linear"></iconify-icon></div>
+                  <div class="method-card-info">
+                    <strong>Transfer Bank</strong>
+                    <span>Konfirmasi otomatis setelah transfer</span>
+                  </div>
+                  <div class="method-card-radio-dot"></div>
+                </div>
+              </label>
+              <div class="payment-detail" id="paymentDetail-transfer">
+                Silakan transfer ke salah satu rekening berikut. Pesanan akan terverifikasi otomatis.
+                <div class="payment-detail-banks">
+                  <span class="bank-chip">BCA <span class="bank-account">1234-5678-90</span></span>
+                  <span class="bank-chip">Mandiri <span class="bank-account">0987-6543-21</span></span>
+                  <span class="bank-chip">BNI <span class="bank-account">1122-3344-55</span></span>
+                  <span class="bank-chip">BRI <span class="bank-account">5566-7788-99</span></span>
+                </div>
+                <div class="transfer-amount">
+                  <span class="transfer-amount-label">Total yang harus ditransfer</span>
+                  <span class="transfer-amount-value" id="transferAmountDisplay">Rp 0</span>
+                </div>
+              </div>
+
+              <label class="payment-method-card">
+                <input type="radio" name="paymentMethod" value="ewallet">
+                <div class="method-card-inner">
+                  <div class="method-card-icon"><iconify-icon icon="solar:qr-code-linear"></iconify-icon></div>
+                  <div class="method-card-info">
+                    <strong>E-Wallet / QRIS</strong>
+                    <span>GoPay, OVO, DANA, ShopeePay</span>
+                  </div>
+                  <div class="method-card-radio-dot"></div>
+                </div>
+              </label>
+              <div class="payment-detail" id="paymentDetail-ewallet">
+                <div class="payment-detail-qr">
+                  <div class="qr-placeholder"></div>
+                  <div>
+                    <div class="qr-label">Scan kode QRIS ini dengan aplikasi e-wallet favoritmu.<br>Didukung: <strong>GoPay, OVO, DANA, ShopeePay, LinkAja</strong></div>
+                    <div class="transfer-amount" style="margin-top:0.6rem">
+                      <span class="transfer-amount-label">Total pembayaran</span>
+                      <span class="transfer-amount-value" id="qrisAmountDisplay">Rp 0</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <label class="payment-method-card">
+                <input type="radio" name="paymentMethod" value="cod">
+                <div class="method-card-inner">
+                  <div class="method-card-icon"><iconify-icon icon="solar:money-bag-linear"></iconify-icon></div>
+                  <div class="method-card-info">
+                    <strong>Bayar di Tempat (COD)</strong>
+                    <span>Bayar tunai saat paket tiba</span>
+                  </div>
+                  <div class="method-card-radio-dot"></div>
+                </div>
+              </label>
+              <div class="payment-detail" id="paymentDetail-cod">
+                <div class="cod-note">
+                  <iconify-icon icon="solar:danger-triangle-linear"></iconify-icon>
+                  <span>Siapkan <strong>uang pas</strong> sesuai total pesanan. Kurir akan menghubungi kamu sebelum paket tiba. COD hanya tersedia untuk area tertentu.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ============ KOLOM KANAN: RINGKASAN (STRUK) ============ -->
+        <div class="receipt-card">
+          <div class="receipt-card-top">
+            <h3>Ringkasan Pesanan</h3>
+            <div class="checkout-items-list" id="checkoutItemsList">
+              <!-- Diisi otomatis oleh JS -->
+            </div>
+          </div>
+
+          <div class="receipt-tear"></div>
+
+          <div class="receipt-card-bottom">
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="checkoutSubtotal">Rp 0</span>
+            </div>
+            <div class="summary-row discount" id="checkoutDiscountRow" style="display:none">
+              <span>Diskon Promo</span>
+              <span id="checkoutDiscount">-Rp 0</span>
+            </div>
+            <div class="summary-row">
+              <span>Ongkos Kirim</span>
+              <span id="checkoutShipping">Rp 0</span>
+            </div>
+
+            <hr class="summary-divider">
+
+            <div class="summary-total-row">
+              <span>Total Bayar</span>
+              <span id="checkoutTotal">Rp 0</span>
+            </div>
+            <p style="font-size:0.72rem;color:var(--gray);margin-top:0.3rem;text-align:right">Sudah termasuk ongkos kirim</p>
+
+            <button type="submit" class="btn-checkout" id="placeOrderBtn">
+              <iconify-icon icon="solar:lock-keyhole-linear"></iconify-icon> Buat Pesanan
+            </button>
+
+            <div class="summary-trust">
+              <span class="summary-trust-item"><iconify-icon icon="solar:shield-check-linear"></iconify-icon> Transaksi Terenkripsi</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+    <a href="cart.html" class="continue-shopping-link">
+      <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> Kembali ke Keranjang
+    </a>
+  </div>
+
+  <!-- =============================================
+       FOOTER (sama seperti index.html)
+  ============================================= -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Ven<span>dora</span></div>
+          <p class="footer-desc">
+            Platform belanja multi-vendor terpercaya dengan ribuan produk pilihan dari vendor terbaik di seluruh
+            Indonesia.
+          </p>
+          <div class="social-links">
+            <button class="social-btn"><iconify-icon icon="mdi:facebook"></iconify-icon></button>
+            <button class="social-btn"><iconify-icon icon="mdi:instagram"></iconify-icon></button>
+            <button class="social-btn"><iconify-icon icon="mdi:twitter"></iconify-icon></button>
+            <button class="social-btn"><iconify-icon icon="mdi:youtube"></iconify-icon></button>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Belanja</h4>
+          <ul>
+            <li><a href="#">Semua Produk</a></li>
+            <li><a href="#">Flash Sale</a></li>
+            <li><a href="#">Produk Baru</a></li>
+            <li><a href="#">Terlaris</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Vendor</h4>
+          <ul>
+            <li><a href="#">Daftar Vendor</a></li>
+            <li><a href="#">Dashboard Vendor</a></li>
+            <li><a href="#">Syarat &amp; Ketentuan</a></li>
+            <li><a href="#">Panduan Berjualan</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Bantuan</h4>
+          <ul>
+            <li><a href="#">Pusat Bantuan</a></li>
+            <li><a href="#">Cara Pemesanan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Kontak Kami</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 Vendora. Hak cipta dilindungi.</span>
+        <span>Dibuat dengan ❤️ oleh Tim Vendora</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notifikasi -->
+  <div class="toast" id="toast">
+    <span>✅</span>
+    <span id="toastMsg">Produk ditambahkan ke keranjang!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

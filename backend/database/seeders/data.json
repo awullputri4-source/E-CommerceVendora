@@ -1,0 +1,1466 @@
+{
+  "categories": [
+    {
+      "icon": "",
+      "name": "Furniture",
+      "count": "",
+      "slug": "furniture"
+    },
+    {
+      "icon": "",
+      "name": "Fashion",
+      "count": "",
+      "slug": "fashion"
+    },
+    {
+      "icon": "",
+      "name": "Elektronik",
+      "count": "",
+      "slug": "elektronik"
+    },
+    {
+      "icon": "",
+      "name": "Dapur",
+      "count": "",
+      "slug": "dapur"
+    },
+    {
+      "icon": "",
+      "name": "Kecantikan",
+      "count": "",
+      "slug": "kecantikan"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Sofa Minimalis Nordic",
+      "vendor": "FurniHome",
+      "category": "furniture",
+      "price": 1850000,
+      "originalPrice": 2500000,
+      "discount": "26%",
+      "rating": "★★★★★",
+      "ratingCount": 128,
+      "badge": "sale",
+      "badgeText": "Sale",
+      "color": "linear-gradient(145deg, #e8d5b7, #c4a87a)",
+      "image": "sofafa.jpe",
+      "description": "Sofa minimalis dengan desain Nordic yang elegan, dilengkapi rangka kayu solid dan busa berkepadatan tinggi untuk kenyamanan maksimal. Cocok untuk ruang tamu modern maupun apartemen minimalis.",
+      "images": [
+        "sofafa.jpe",
+        "minisofa.jpe",
+        "sofacream.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Krem",
+          "hex": "#e8d5b7"
+        },
+        {
+          "name": "Cokelat",
+          "hex": "#a8864a"
+        },
+        {
+          "name": "Abu-abu",
+          "hex": "#a0a0a0"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Bahan": "Kain linen & rangka kayu jati",
+        "Dimensi": "180 x 85 x 75 cm",
+        "Berat": "32 kg",
+        "Kapasitas": "2-3 orang",
+        "Garansi": "1 tahun garansi rangka"
+      },
+      "reviews": [
+        {
+          "name": "Dinda P.",
+          "date": "12 Mei 2025",
+          "rating": 5,
+          "text": "Sofanya empuk banget dan warnanya sesuai foto. Pengiriman juga rapi, dibungkus kayu."
+        },
+        {
+          "name": "Aditya R.",
+          "date": "2 April 2025",
+          "rating": 4,
+          "text": "Kualitas bagus untuk harga segini, hanya proses perakitan agak lama."
+        },
+        {
+          "name": "Maya S.",
+          "date": "20 Maret 2025",
+          "rating": 5,
+          "text": "Cocok untuk ruang tamu kecil, ukurannya pas dan terlihat mewah."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Iphone 17",
+      "vendor": "TechZone",
+      "category": "elektronik",
+      "price": 18000000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★☆",
+      "ratingCount": 84,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #b7c8e8, #7a9ac4)",
+      "image": "iphone17.jpe",
+      "description": "iPhone 17 dengan teknologi chip Apple terbaru, sistem kamera revolusioner dengan sensor telefoto superior, serta layar Super Retina XDR ProMotion. Memberikan performa ekstrem dan daya tahan baterai sepanjang hari.",
+      "images": [
+        "iphone17.jpe",
+        "elektronik.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Biru",
+          "hex": "#7a9ac4"
+        },
+        {
+          "name": "Putih",
+          "hex": "#f0f0f0"
+        },
+        {
+          "name": "Hitam",
+          "hex": "#2e2e2e"
+        }
+      ],
+      "sizes": [
+        "128GB",
+        "256GB",
+        "512GB",
+        "1TB"
+      ],
+      "stock": true,
+      "specs": {
+        "Layar": "6.7 inci Super Retina XDR OLED",
+        "Chipset": "Apple A19 Bionic (3nm)",
+        "Kamera Utama": "48 MP + 48 MP + 48 MP Triple Camera",
+        "Konektivitas": "5G, Wi-Fi 7, Bluetooth 5.4",
+        "Garansi": "1 Tahun Garansi Resmi iBox"
+      },
+      "reviews": [
+        {
+          "name": "Fajar K.",
+          "date": "9 Mei 2025",
+          "rating": 5,
+          "text": "Kameranya luar biasa detail, zoom-nya tajam sekali. Warna birunya sangat elegan."
+        },
+        {
+          "name": "Sinta M.",
+          "date": "30 April 2025",
+          "rating": 5,
+          "text": "Baterainya awet banget seharian penuh walau dipakai main game dan medsos terus."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Miu Miu Cable Knit Zip Cardigan",
+      "vendor": "StepStyle",
+      "category": "fashion",
+      "price": 55800000,
+      "originalPrice": 77000000,
+      "discount": "27%",
+      "rating": "★★★★★",
+      "ratingCount": 302,
+      "badge": "hot",
+      "badgeText": "Hot",
+      "color": "linear-gradient(145deg, #2e2e2e, #4a4a4a)",
+      "image": "miu miu.jpe",
+      "description": "Cardigan rajut resleting Miu Miu dengan detail kabel rajut yang klasik dan siluet modern. Terbuat dari wol merino premium yang lembut dan nyaman, cocok untuk tampilan kasual yang chic dan hangat.",
+      "images": [
+        "miu miu.jpe",
+        "fashion.jpg"
+      ],
+      "colors": [
+        {
+          "name": "Navy/Hitam",
+          "hex": "#1e2530"
+        },
+        {
+          "name": "Beige/Krem",
+          "hex": "#e5d3b3"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "stock": true,
+      "specs": {
+        "Bahan": "100% Virgin Wool Merino",
+        "Desain": "Cable-knit motif dengan ritsleting depan penuh",
+        "Kerah": "High-neck collar",
+        "Negara Pembuat": "Italia",
+        "Instruksi Perawatan": "Dry clean only"
+      },
+      "reviews": [
+        {
+          "name": "Citra A.",
+          "date": "15 Mei 2025",
+          "rating": 5,
+          "text": "Rajutannya tebal tapi tidak bikin gatal. Model crop-nya manis sekali saat dipakai."
+        },
+        {
+          "name": "Reza M.",
+          "date": "1 April 2025",
+          "rating": 5,
+          "text": "Kualitas Miu Miu tidak perlu diragukan lagi. Ritsletingnya lancar dan jahitannya presisi."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Rhode Peptide Lip Tint",
+      "vendor": "GlowBeauty",
+      "category": "kecantikan",
+      "price": 390000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★☆",
+      "ratingCount": 56,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #d5e8b7, #8ac47a)",
+      "image": "rhode.jpe",
+      "description": "Rhode Peptide Lip Tint dari Hailey Bieber memberikan hidrasi intens untuk bibir sekaligus memberikan rona warna alami yang berkilau. Diperkaya dengan formula peptide untuk bibir yang tampak lebih bervolume dan kenyal.",
+      "images": [
+        "rhode.jpe",
+        "makeup.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Ribbon",
+          "hex": "#f3c2c2"
+        },
+        {
+          "name": "Toast",
+          "hex": "#c4a87a"
+        },
+        {
+          "name": "Raspberry",
+          "hex": "#8b2500"
+        },
+        {
+          "name": "Espresso",
+          "hex": "#5c4033"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Kandungan Utama": "Shea Butter, Peptides, Cupuacu, Babassu",
+        "Fungsi": "Menghidrasi, menutrisi, memberikan warna & kilau alami",
+        "Ukuran": "10 ml",
+        "Cruelty Free": "Ya, bersertifikat Leaping Bunny",
+        "Vegan": "Ya, 100% Vegan"
+      },
+      "reviews": [
+        {
+          "name": "Wulan D.",
+          "date": "5 Mei 2025",
+          "rating": 4,
+          "text": "Sangat melembabkan bibir pecah-pecah saya, warnanya natural banget untuk sehari-hari."
+        },
+        {
+          "name": "Amanda R.",
+          "date": "22 April 2025",
+          "rating": 5,
+          "text": "Glaze-nya cantik sekali, tidak lengket seperti lip gloss biasa. Baunya juga enak."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Drawer Retro Minimalis",
+      "vendor": "FurniHome",
+      "category": "furniture",
+      "price": 1250000,
+      "originalPrice": 1500000,
+      "discount": "17%",
+      "rating": "★★★★★",
+      "ratingCount": 42,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #e8d5b7, #c4a87a)",
+      "image": "drawer.jpe",
+      "description": "Drawer penyimpanan dengan desain retro minimalis yang memiliki 3 laci luas. Terbuat dari kayu mahoni berkualitas tinggi dengan finishing rapi.",
+      "images": [
+        "drawer.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Cokelat Terang",
+          "hex": "#c4a87a"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Bahan": "Kayu mahoni & MDF",
+        "Dimensi": "80 x 40 x 75 cm",
+        "Berat": "18 kg",
+        "Laci": "3 unit"
+      },
+      "reviews": []
+    },
+    {
+      "id": 6,
+      "name": "Sofa Cushion Mini",
+      "vendor": "FurniHome",
+      "category": "furniture",
+      "price": 950000,
+      "originalPrice": 1200000,
+      "discount": "20%",
+      "rating": "★★★★☆",
+      "ratingCount": 28,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #e8d5b7, #c4a87a)",
+      "image": "minisofa.jpe",
+      "description": "Sofa single cushion berukuran ringkas, sangat cocok untuk sudut membaca atau ruang kamar tidur Anda.",
+      "images": [
+        "minisofa.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Abu-abu",
+          "hex": "#a0a0a0"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Bahan": "Busa High-Density & Linen",
+        "Dimensi": "80 x 80 x 85 cm",
+        "Berat": "15 kg"
+      },
+      "reviews": []
+    },
+    {
+      "id": 7,
+      "name": "Meja Kerja Kayu Jati",
+      "vendor": "FurniHome",
+      "category": "furniture",
+      "price": 2100000,
+      "originalPrice": 2800000,
+      "discount": "25%",
+      "rating": "★★★★★",
+      "ratingCount": 19,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #e8d5b7, #c4a87a)",
+      "image": "table.jpe",
+      "description": "Meja kerja dari bahan kayu jati solid dengan laci penyimpanan dokumen. Rangka kokoh dan permukaan halus antipanas.",
+      "images": [
+        "table.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Natural Wood",
+          "hex": "#8b5a2b"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Bahan": "Kayu Jati Solid",
+        "Dimensi": "120 x 60 x 75 cm",
+        "Berat": "25 kg"
+      },
+      "reviews": []
+    },
+    {
+      "id": 8,
+      "name": "Sofa Creamy Comfort",
+      "vendor": "FurniHome",
+      "category": "furniture",
+      "price": 3200000,
+      "originalPrice": 4000000,
+      "discount": "20%",
+      "rating": "★★★★★",
+      "ratingCount": 57,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #e8d5b7, #c4a87a)",
+      "image": "sofacream.jpe",
+      "description": "Sofa 2-seater dengan warna krem hangat yang memberikan nuansa kenyamanan ekstra di ruang keluarga Anda.",
+      "images": [
+        "sofacream.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Krem",
+          "hex": "#e8d5b7"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Bahan": "Kain Velvet premium & rangka kayu solid",
+        "Dimensi": "160 x 85 x 80 cm"
+      },
+      "reviews": []
+    },
+    {
+      "id": 9,
+      "name": "Meja Kopi Coklat Vintage",
+      "vendor": "FurniHome",
+      "category": "furniture",
+      "price": 750000,
+      "originalPrice": 900000,
+      "discount": "16%",
+      "rating": "★★★★☆",
+      "ratingCount": 31,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #e8d5b7, #c4a87a)",
+      "image": "tablecoklat.jpe",
+      "description": "Meja kopi vintage berwarna cokelat hangat dengan kompartemen bawah untuk majalah atau remote control.",
+      "images": [
+        "tablecoklat.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Cokelat Tua",
+          "hex": "#5c4033"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Bahan": "Kayu olahan dengan lapisan veneer jati",
+        "Dimensi": "90 x 50 x 45 cm"
+      },
+      "reviews": []
+    },
+    {
+      "id": 10,
+      "name": "Miu Miu Cotton Cropped Shirt",
+      "vendor": "StepStyle",
+      "category": "fashion",
+      "price": 18500000,
+      "originalPrice": 22000000,
+      "discount": "15%",
+      "rating": "★★★★★",
+      "ratingCount": 64,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #e5e5e5, #b8b8b8)",
+      "image": "miushirt.jpe",
+      "description": "Kemeja katun cropped dengan detail bordir logo Miu Miu yang khas pada saku dada. Desain modern, chic, dan sangat modis untuk penampilan kasual formal.",
+      "images": [
+        "miushirt.jpe",
+        "fashion.jpg"
+      ],
+      "colors": [
+        {
+          "name": "Putih",
+          "hex": "#ffffff"
+        },
+        {
+          "name": "Biru Muda",
+          "hex": "#add8e6"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "stock": true,
+      "specs": {
+        "Bahan": "100% Cotton Poplin",
+        "Kerah": "Classic collar",
+        "Lengan": "Lengan Panjang",
+        "Perawatan": "Dry clean recommended"
+      },
+      "reviews": [
+        {
+          "name": "Jessica K.",
+          "date": "10 Juni 2025",
+          "rating": 5,
+          "text": "Bahan katunnya adem banget dan potongan crop-nya pas banget di pinggang."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Miu Miu Leather Hobo Bag",
+      "vendor": "StepStyle",
+      "category": "fashion",
+      "price": 42000000,
+      "originalPrice": 50000000,
+      "discount": null,
+      "rating": "★★★★★",
+      "ratingCount": 45,
+      "badge": "hot",
+      "badgeText": "Hot",
+      "color": "linear-gradient(145deg, #c4a87a, #8c734b)",
+      "image": "miubag.jpe",
+      "description": "Tas hobo kulit Miu Miu dengan tekstur matelassé ikonik. Dilengkapi dengan tali bahu kulit yang dapat disesuaikan dan detail hardware berwarna emas.",
+      "images": [
+        "miubag.jpe",
+        "miubag2.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Krem / Emas",
+          "hex": "#d4af37"
+        },
+        {
+          "name": "Hitam",
+          "hex": "#000000"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Bahan": "100% Nappa Leather",
+        "Hardware": "Gold-tone metal hardware",
+        "Dimensi": "24 x 18 x 6 cm",
+        "Kelengkapan": "Dustbag & Authenticity Card"
+      },
+      "reviews": [
+        {
+          "name": "Nabila A.",
+          "date": "1 Juli 2025",
+          "rating": 5,
+          "text": "Kulitnya sangat lembut dan jahitannya super rapi. Muat hp dan dompet kecil."
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Miu Miu Wander Matelasse Mini Bag",
+      "vendor": "StepStyle",
+      "category": "fashion",
+      "price": 38000000,
+      "originalPrice": 42000000,
+      "discount": "9%",
+      "rating": "★★★★★",
+      "ratingCount": 29,
+      "badge": "sale",
+      "badgeText": "Sale",
+      "color": "linear-gradient(145deg, #f3c2c2, #d58a8a)",
+      "image": "miubag2.jpe",
+      "description": "Reinterpretasi tas Wander yang ikonik dalam bentuk mini yang trendi. Dibuat dengan pengerjaan matelassé yang memukau dan pegangan melengkung yang khas.",
+      "images": [
+        "miubag2.jpe",
+        "miubag.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Soft Pink",
+          "hex": "#ffb6c1"
+        },
+        {
+          "name": "Putih",
+          "hex": "#ffffff"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Bahan": "Regenerated nylon & Nappa leather trim",
+        "Dimensi": "20 x 17 x 6 cm",
+        "Tali": "Tali rantai lepas-pasang"
+      },
+      "reviews": [
+        {
+          "name": "Clara S.",
+          "date": "15 Juli 2025",
+          "rating": 5,
+          "text": "Lucu banget tasnya! Ukuran mini tapi masih fungsional untuk hangout sore."
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Prada Brushed Leather Combat Boots",
+      "vendor": "StepStyle",
+      "category": "fashion",
+      "price": 24500000,
+      "originalPrice": 28000000,
+      "discount": "12%",
+      "rating": "★★★★★",
+      "ratingCount": 78,
+      "badge": "hot",
+      "badgeText": "Hot",
+      "color": "linear-gradient(145deg, #111111, #333333)",
+      "image": "pradaboots.jpe",
+      "description": "Sepatu combat boots Prada dengan bahan brushed leather premium yang kokoh. Menampilkan sol tebal bermotif traktor yang ikonik dan logo segitiga logam Prada.",
+      "images": [
+        "pradaboots.jpe",
+        "fashion.jpg"
+      ],
+      "colors": [
+        {
+          "name": "Hitam",
+          "hex": "#000000"
+        }
+      ],
+      "sizes": [
+        "37",
+        "38",
+        "39",
+        "40"
+      ],
+      "stock": true,
+      "specs": {
+        "Bahan": "Spazzolato (Brushed) Leather",
+        "Sol": "Lightweight rubber lug sole",
+        "Tinggi Sol": "5 cm",
+        "Negara Pembuat": "Italia"
+      },
+      "reviews": [
+        {
+          "name": "Devi R.",
+          "date": "3 Agustus 2025",
+          "rating": 5,
+          "text": "Sepatunya kelihatan gagah dan mewah. Awalnya agak kaku tapi lama-lama nyaman dipakai."
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Elegant Classic Leather Heels",
+      "vendor": "StepStyle",
+      "category": "fashion",
+      "price": 8900000,
+      "originalPrice": 11000000,
+      "discount": "19%",
+      "rating": "★★★★☆",
+      "ratingCount": 52,
+      "badge": "sale",
+      "badgeText": "Sale",
+      "color": "linear-gradient(145deg, #ffd3b6, #ffaaa5)",
+      "image": "heels.jpe",
+      "description": "Heels stiletto klasik dengan bahan kulit domba yang lembut di bagian dalam untuk kenyamanan berjalan seharian. Desain pointed toe yang mempercantik kaki.",
+      "images": [
+        "heels.jpe",
+        "fashion.jpg"
+      ],
+      "colors": [
+        {
+          "name": "Nude/Krem",
+          "hex": "#f5f5dc"
+        },
+        {
+          "name": "Hitam",
+          "hex": "#000000"
+        }
+      ],
+      "sizes": [
+        "36",
+        "37",
+        "38",
+        "39"
+      ],
+      "stock": true,
+      "specs": {
+        "Bahan Upper": "Genuine Calfskin Leather",
+        "Bahan Lining": "Lambskin Leather",
+        "Tinggi Hak": "8 cm",
+        "Tipe Hak": "Stiletto"
+      },
+      "reviews": [
+        {
+          "name": "Alisha T.",
+          "date": "12 Agustus 2025",
+          "rating": 4,
+          "text": "Cantik sekali heels-nya. Pas banget untuk acara formal. Haknya kokoh."
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "iPhone 17 Pro Max Silver",
+      "vendor": "Techzone",
+      "category": "elektronik",
+      "price": 22000000,
+      "originalPrice": 24500000,
+      "discount": "10%",
+      "rating": "★★★★★",
+      "ratingCount": 142,
+      "badge": "hot",
+      "badgeText": "Hot",
+      "color": "linear-gradient(145deg, #f0f0f0, #c0c0c0)",
+      "image": "ip.jpe",
+      "description": "iPhone 17 Pro Max edisi Silver dengan kapasitas memori lega, sistem kamera Pro tiga sensor mutakhir, bodi titanium super kuat, dan chip A19 Pro.",
+      "images": [
+        "ip.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Silver",
+          "hex": "#e0e0e0"
+        }
+      ],
+      "sizes": [
+        "256GB",
+        "512GB",
+        "1TB"
+      ],
+      "stock": true,
+      "specs": {
+        "Layar": "6.9 inci Super Retina XDR OLED",
+        "Bahan": "Titanium Grade 5",
+        "Chipset": "Apple A19 Pro",
+        "Kamera Utama": "48 MP Triple Camera",
+        "Garansi": "1 Tahun Garansi Resmi iBox"
+      },
+      "reviews": [
+        {
+          "name": "Andi S.",
+          "date": "15 Agustus 2025",
+          "rating": 5,
+          "text": "Bodi titaniumnya terasa sangat kokoh dan ringan. Layar lebih lega dibanding seri sebelumnya."
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Redmi Smart Watch Elite",
+      "vendor": "Techzone",
+      "category": "elektronik",
+      "price": 890000,
+      "originalPrice": 1200000,
+      "discount": "26%",
+      "rating": "★★★★★",
+      "ratingCount": 75,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #e5e5e5, #b8b8b8)",
+      "image": "138204282311353538.jpe",
+      "description": "Smartwatch layar sentuh AMOLED premium dengan deteksi detak jantung 24 jam, pemantauan tidur, GPS internal, dan daya tahan baterai hingga 12 hari.",
+      "images": [
+        "138204282311353538.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Hitam",
+          "hex": "#1a1a1a"
+        },
+        {
+          "name": "Ivory",
+          "hex": "#f5f5dc"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Layar": "1.75 inci AMOLED",
+        "Konektivitas": "Bluetooth 5.2",
+        "Tahan Air": "5ATM (hingga 50 meter)",
+        "Baterai": "289 mAh"
+      },
+      "reviews": []
+    },
+    {
+      "id": 20,
+      "name": "JBL Charge Portable Speaker",
+      "vendor": "Techzone",
+      "category": "elektronik",
+      "price": 2100000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★★",
+      "ratingCount": 96,
+      "badge": "new",
+      "badgeText": "new",
+      "color": "linear-gradient(145deg, #2e2e2e, #4a4a4a)",
+      "image": "57209857760204108.jpe",
+      "description": "Speaker bluetooth portable dengan suara stereo dahsyat, bass mendalam, daya tahan baterai hingga 20 jam, dan kemampuan tahan air IPX7.",
+      "images": [
+        "57209857760204108.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Hitam",
+          "hex": "#111111"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Konektivitas": "Bluetooth 5.1",
+        "Daya Output": "30W RMS",
+        "Tahan Air": "IPX7 Waterproof",
+        "Baterai": "7500 mAh"
+      },
+      "reviews": []
+    },
+    {
+      "id": 21,
+      "name": "MacBook Pro M3 Pro",
+      "vendor": "Techzone",
+      "category": "elektronik",
+      "price": 28500000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★★",
+      "ratingCount": 43,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #d3d3d3, #a9a9a9)",
+      "image": "MacBook Pro.jpe",
+      "description": "Laptop premium MacBook Pro dengan chip Apple M3 Pro terbaru, RAM 18GB, SSD 512GB, dan layar Liquid Retina XDR 14 inci. Cocok untuk profesional kreatif.",
+      "images": [
+        "MacBook Pro.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Space Grey",
+          "hex": "#3e3e3e"
+        },
+        {
+          "name": "Silver",
+          "hex": "#d3d3d3"
+        }
+      ],
+      "sizes": [
+        "14-inci",
+        "16-inci"
+      ],
+      "stock": true,
+      "specs": {
+        "Layar": "14.2 inci Liquid Retina XDR",
+        "Chipset": "Apple M3 Pro (11-Core CPU)",
+        "Memori": "18GB Unified Memory",
+        "Penyimpanan": "512GB SSD"
+      },
+      "reviews": []
+    },
+    {
+      "id": 22,
+      "name": "Canon PowerShot G7 X Mark III",
+      "vendor": "Techzone",
+      "category": "elektronik",
+      "price": 11200000,
+      "originalPrice": 12500000,
+      "discount": "10%",
+      "rating": "★★★★★",
+      "ratingCount": 51,
+      "badge": "sale",
+      "badgeText": "Sale",
+      "color": "linear-gradient(145deg, #1f1f1f, #0d0d0d)",
+      "image": "PowerShot G7 X Mark III.jpe",
+      "description": "Kamera saku premium Canon PowerShot G7 X Mark III yang sangat cocok untuk vlogging dan pembuatan konten dengan perekaman video 4K tanpa crop dan port mikrofon internal.",
+      "images": [
+        "PowerShot G7 X Mark III.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Hitam",
+          "hex": "#1a1a1a"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Sensor": "1.0 inci Stacked CMOS 20.1 MP",
+        "Prosesor": "DIGIC 8",
+        "Video": "4K 30p / Full HD 120p",
+        "Layar": "3.0 inci Tilting Touchscreen"
+      },
+      "reviews": []
+    },
+    {
+      "id": 23,
+      "name": "Anker Soundcore Motion+",
+      "vendor": "Techzone",
+      "category": "elektronik",
+      "price": 1450000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★☆",
+      "ratingCount": 34,
+      "badge": null,
+      "badgeText": null,
+      "color": "linear-gradient(145deg, #333333, #1c1c1c)",
+      "image": "SoundCore Elite.jpe",
+      "description": "Speaker Bluetooth Anker Soundcore dengan sertifikasi Hi-Res Audio, codec Qualcomm aptX, daya tahan baterai 12 jam, dan rating tahan air IPX7.",
+      "images": [
+        "SoundCore Elite.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Hitam",
+          "hex": "#1c1c1c"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Audio": "Hi-Res Audio Certified & aptX",
+        "Daya": "30W",
+        "Waktu Putar": "12 Jam",
+        "Proteksi": "IPX7 Waterproof"
+      },
+      "reviews": []
+    },
+    {
+      "id": 24,
+      "name": "Power Bank UGREEN 100W 20000mAh",
+      "vendor": "Techzone",
+      "category": "elektronik",
+      "price": 799000,
+      "originalPrice": 999000,
+      "discount": "20%",
+      "rating": "★★★★★",
+      "ratingCount": 112,
+      "badge": "sale",
+      "badgeText": "Sale",
+      "color": "linear-gradient(145deg, #6c7b95, #464f60)",
+      "image": "باور بانك UGREEN 100W سريع الشحن – قوة هائلة لشحن اللابتوب والهاتف والأجهزة الذكية.jpe",
+      "description": "Power bank berkecepatan tinggi UGREEN 100W dengan kapasitas besar 20.000mAh, dilengkapi port USB-C ganda untuk pengisian laptop, tablet, dan smartphone sekaligus.",
+      "images": [
+        "باور بانك UGREEN 100W سريع الشحن – قوة هائلة لشحن Lapatop والهاتف والأجهزة الذكية.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Abu-abu Space",
+          "hex": "#464f60"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Kapasitas": "20.000 mAh",
+        "Output Maks": "100W (USB-C1)",
+        "Port": "2x USB-C, 1x USB-A"
+      },
+      "reviews": []
+    },
+    {
+      "id": 25,
+      "name": "Miu Miu Cardigan Knit Cream",
+      "vendor": "StepStyle",
+      "category": "fashion",
+      "price": 48000000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★★",
+      "ratingCount": 18,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #f7f1e3, #d1ccc0)",
+      "image": "miu.jpe",
+      "description": "Cardigan rajut Miu Miu berbahan kasmir lembut warna krem dengan logo manik-manik indah di dada kiri. Siluet manis dengan kancing depan kontras.",
+      "images": [
+        "miu.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Krem",
+          "hex": "#f7f1e3"
+        }
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "stock": true,
+      "specs": {
+        "Bahan": "100% Cashmere",
+        "Negara Pembuat": "Italia",
+        "Kancing": "4 kancing depan kontras"
+      },
+      "reviews": []
+    },
+    {
+      "id": 26,
+      "name": "Chanel Les 4 Ombres Eyeshadow",
+      "vendor": "GlowBeauty",
+      "category": "kecantikan",
+      "price": 1150000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★★",
+      "ratingCount": 47,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #1c1c1c, #404040)",
+      "image": "Chanel Les 4 Ombres Éclat De Nuit Multi-Effect Quadra Eyeshadow 2G Tissé Camélia.jpe",
+      "description": "Palet eyeshadow ikonik Chanel dengan 4 variasi warna multi-efek indah untuk riasan mata natural hingga glamor. Formula lembut dan warna intens tahan lama.",
+      "images": [
+        "Chanel Les 4 Ombres Éclat De Nuit Multi-Effect Quadra Eyeshadow 2G Tissé Camélia.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Tisse Camelia",
+          "hex": "#63473b"
+        }
+      ],
+      "sizes": [
+        "2g"
+      ],
+      "stock": true,
+      "specs": {
+        "Tekstur": "Soft Powder",
+        "Isi": "4 Warna (Quadra)",
+        "Negara Pembuat": "Prancis"
+      },
+      "reviews": []
+    },
+    {
+      "id": 27,
+      "name": "Chanel Les Beiges Bronzing Cream",
+      "vendor": "GlowBeauty",
+      "category": "kecantikan",
+      "price": 980000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★★",
+      "ratingCount": 29,
+      "badge": null,
+      "badgeText": null,
+      "color": "linear-gradient(145deg, #e8c89b, #c59f71)",
+      "image": "Chanel Les Beiges Healthy Glow Bronzing Cream Soleil Tan 30G Light Bronz.jpe",
+      "description": "Krim bronzer gel-krim dari Chanel yang memberikan tampilan berkilau sehat alami layaknya sehabis berjemur di pantai. Tekstur ringan dan mudah dibaurkan.",
+      "images": [
+        "Chanel Les Beiges Healthy Glow Bronzing Cream Soleil Tan 30G Light Bronz.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Light Bronze",
+          "hex": "#c59f71"
+        }
+      ],
+      "sizes": [
+        "30g"
+      ],
+      "stock": true,
+      "specs": {
+        "Tekstur": "Gel-Cream",
+        "Fungsi": "Bronzer & Glow",
+        "Isi": "30g"
+      },
+      "reviews": []
+    },
+    {
+      "id": 28,
+      "name": "Dior Addict Shine Lipstick",
+      "vendor": "GlowBeauty",
+      "category": "kecantikan",
+      "price": 720000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★★",
+      "ratingCount": 68,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #ffd3e0, #ff80a5)",
+      "image": "Dior - Addict Lipstick-Hydrating Shine Lipstick - 90% Natural-Origin Ingredients - Refillable.jpe",
+      "description": "Lipstick Dior Addict penambah kilau dengan 90% kandungan bahan alami yang memberikan kelembaban intens sepanjang hari serta warna memukau yang dapat diisi ulang (refillable).",
+      "images": [
+        "Dior - Addict Lipstick-Hydrating Shine Lipstick - 90% Natural-Origin Ingredients - Refillable.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Shine Red",
+          "hex": "#d13b53"
+        }
+      ],
+      "sizes": [
+        "3.2g"
+      ],
+      "stock": true,
+      "specs": {
+        "Bahan Alami": "90% Natural-Origin",
+        "Fungsi": "Hydrating & High Shine",
+        "Fitur": "Refillable Case"
+      },
+      "reviews": []
+    },
+    {
+      "id": 29,
+      "name": "L'Oreal True Match Liquid Foundation",
+      "vendor": "GlowBeauty",
+      "category": "kecantikan",
+      "price": 220000,
+      "originalPrice": 260000,
+      "discount": "15%",
+      "rating": "★★★★☆",
+      "ratingCount": 89,
+      "badge": "sale",
+      "badgeText": "Sale",
+      "color": "linear-gradient(145deg, #eedbc5, #d2b393)",
+      "image": "L'Oreal True Match Foundation Vanilla 2N 30Ml.jpe",
+      "description": "Liquid foundation L'Oreal True Match yang menyatu sempurna dengan warna kulit Anda. Diperkaya dengan Hyaluronic Acid dan SPF 17 untuk kulit sehat terlindungi.",
+      "images": [
+        "L'Oreal True Match Foundation Vanilla 2N 30Ml.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Vanilla 2N",
+          "hex": "#eedbc5"
+        }
+      ],
+      "sizes": [
+        "30ml"
+      ],
+      "stock": true,
+      "specs": {
+        "Kandungan": "Hyaluronic Acid & SPF 17",
+        "Isi": "30ml",
+        "Warna": "Vanilla (Neutral Shade)"
+      },
+      "reviews": []
+    },
+    {
+      "id": 30,
+      "name": "YSL Skin Affair Cushion Foundation",
+      "vendor": "GlowBeauty",
+      "category": "kecantikan",
+      "price": 1250000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★★",
+      "ratingCount": 41,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #1c1c1c, #000000)",
+      "image": "YSL Skin Affair Cushion Foundation.jpe",
+      "description": "Cushion foundation Yves Saint Laurent (YSL) untuk hasil akhir matte berkilau alami yang tahan lama dan menutrisi kulit wajah secara optimal sepanjang hari.",
+      "images": [
+        "YSL Skin Affair Cushion Foundation.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Natural Beige",
+          "hex": "#e5c5a0"
+        }
+      ],
+      "sizes": [
+        "14g"
+      ],
+      "stock": true,
+      "specs": {
+        "Finish": "Luminous Matte",
+        "Perlindungan": "SPF 50+ / PA+++",
+        "Isi": "14g"
+      },
+      "reviews": []
+    },
+    {
+      "id": 31,
+      "name": "YSL All Hours Liquid Foundation",
+      "vendor": "GlowBeauty",
+      "category": "kecantikan",
+      "price": 1100000,
+      "originalPrice": 1300000,
+      "discount": "15%",
+      "rating": "★★★★★",
+      "ratingCount": 56,
+      "badge": "sale",
+      "badgeText": "Sale",
+      "color": "linear-gradient(145deg, #f0dfcb, #d2beab)",
+      "image": "Yves Saint Laurent Ysl All Hours Foundation Lc2, With Luminous Matte Finish And Lightweight 24H Full Coverage, Infused Hyaluronic Acid 25ml.jpe",
+      "description": "Foundation YSL All Hours dengan cakupan penuh yang terasa ringan, tahan 24 jam dengan hasil akhir matte bercahaya yang tidak retak (cakey).",
+      "images": [
+        "Yves Saint Laurent Ysl All Hours Foundation Lc2, With Luminous Matte Finish And Lightweight 24H Full Coverage, Infused Hyaluronic Acid 25ml.jpe"
+      ],
+      "colors": [
+        {
+          "name": "LC2 Light",
+          "hex": "#f0dfcb"
+        }
+      ],
+      "sizes": [
+        "25ml"
+      ],
+      "stock": true,
+      "specs": {
+        "Daya Tahan": "24 Jam Full Coverage",
+        "Finish": "Luminous Matte",
+        "Isi": "25ml",
+        "Kandungan": "Hyaluronic Acid"
+      },
+      "reviews": []
+    },
+    {
+      "id": 32,
+      "name": "Ninja Max Air Fryer",
+      "vendor": "KitchenPro",
+      "category": "dapur",
+      "price": 2850000,
+      "originalPrice": 3500000,
+      "discount": "18%",
+      "rating": "★★★★★",
+      "ratingCount": 83,
+      "badge": "sale",
+      "badgeText": "Sale",
+      "color": "linear-gradient(145deg, #3a3a3a, #1a1a1a)",
+      "image": "Air Fryers _ Ninja Air Fryer & Next Day Delivery.jpe",
+      "description": "Ninja Air Fryer dengan teknologi memasak cepat menggunakan sirkulasi udara super panas. Mengurangi lemak hingga 75% dibandingkan metode goreng konvensional.",
+      "images": [
+        "Air Fryers _ Ninja Air Fryer & Next Day Delivery.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Hitam",
+          "hex": "#1f1f1f"
+        }
+      ],
+      "sizes": [
+        "5.2L"
+      ],
+      "stock": true,
+      "specs": {
+        "Kapasitas": "5.2 Liter",
+        "Daya": "1750 Watt",
+        "Rentang Suhu": "40°C - 240°C"
+      },
+      "reviews": []
+    },
+    {
+      "id": 33,
+      "name": "Ninja Luxe Cafe Espresso Machine",
+      "vendor": "KitchenPro",
+      "category": "dapur",
+      "price": 8400000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★★",
+      "ratingCount": 27,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #bfbfbf, #808080)",
+      "image": "Buy Ninja ES601UK Luxe Cafe Premier Espresso Coffee Machine _ Coffee machines _ Argos.jpe",
+      "description": "Mesin espresso otomatis Ninja Luxe Cafe Premier untuk menyeduh kopi berstandar barista di rumah Anda, dilengkapi alat pembuat busa susu otomatis.",
+      "images": [
+        "Buy Ninja ES601UK Luxe Cafe Premier Espresso Coffee Machine _ Coffee machines _ Argos.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Silver Metalik",
+          "hex": "#d3d3d3"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Tekanan": "15 Bar Pump",
+        "Daya": "1450 Watt",
+        "Kapasitas Tangki": "2.0 Liter",
+        "Fitur": "Auto Milk Frother"
+      },
+      "reviews": []
+    },
+    {
+      "id": 34,
+      "name": "Russell Hobbs Bronte Toaster",
+      "vendor": "KitchenPro",
+      "category": "dapur",
+      "price": 650000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★☆",
+      "ratingCount": 19,
+      "badge": null,
+      "badgeText": null,
+      "color": "linear-gradient(145deg, #e5d8cd, #b8ab9e)",
+      "image": "Buy Russell Hobbs 26761 Bronte 2 Slice Toaster - Stone _ Toasters _ Argos.jpe",
+      "description": "Pemanggang roti Russell Hobbs Bronte 2 slice dengan desain batu retro-modern yang elegan, dilengkapi kontrol kecoklatan yang presisi.",
+      "images": [
+        "Buy Russell Hobbs 26761 Bronte 2 Slice Toaster - Stone _ Toasters _ Argos.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Stone Grey",
+          "hex": "#b8ab9e"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Kapasitas": "2 Slice Roti",
+        "Daya": "850 Watt",
+        "Bahan": "Stoneware Matte Finish"
+      },
+      "reviews": []
+    },
+    {
+      "id": 35,
+      "name": "Premium Non-Stick Cookware Set",
+      "vendor": "KitchenPro",
+      "category": "dapur",
+      "price": 1850000,
+      "originalPrice": 2400000,
+      "discount": "22%",
+      "rating": "★★★★★",
+      "ratingCount": 48,
+      "badge": "sale",
+      "badgeText": "Sale",
+      "color": "linear-gradient(145deg, #a5a5a5, #5e5e5e)",
+      "image": "Cookware Set.jpe",
+      "description": "Set alat masak anti lengket premium isi 10 buah, dilapisi bahan keramik anti-gores dan aman bebas PFOA/PTFE dengan gagang silikon tahan panas.",
+      "images": [
+        "Cookware Set.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Abu-abu",
+          "hex": "#7a7a7a"
+        }
+      ],
+      "sizes": [
+        "10-Pieces"
+      ],
+      "stock": true,
+      "specs": {
+        "Bahan": "Aluminium Die-cast & Keramik",
+        "Lapisan": "Anti Lengket PTFE/PFOA Free",
+        "Isi Set": "Panci, Wajan, Penutup Kaca"
+      },
+      "reviews": []
+    },
+    {
+      "id": 36,
+      "name": "Hisense Multicooker 8-in-1",
+      "vendor": "KitchenPro",
+      "category": "dapur",
+      "price": 1590000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★★",
+      "ratingCount": 15,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #444444, #1a1a1a)",
+      "image": "Hisense Multicooker HMC6SBKUK _ Fashion World.jpe",
+      "description": "Multicooker Hisense 8-in-1 untuk menanak nasi, slow cooking, mengukus, membuat sup, dan lainnya secara praktis hanya dengan menekan satu tombol.",
+      "images": [
+        "Hisense Multicooker HMC6SBKUK _ Fashion World.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Hitam Glossy",
+          "hex": "#111111"
+        }
+      ],
+      "sizes": [
+        "6L"
+      ],
+      "stock": true,
+      "specs": {
+        "Kapasitas": "6.0 Liter",
+        "Fungsi": "8-in-1 Cooking Program",
+        "Daya": "1000 Watt"
+      },
+      "reviews": []
+    },
+    {
+      "id": 37,
+      "name": "Ceramic Kitchen Storage Containers Set",
+      "vendor": "KitchenPro",
+      "category": "dapur",
+      "price": 420000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★☆",
+      "ratingCount": 22,
+      "badge": null,
+      "badgeText": null,
+      "color": "linear-gradient(145deg, #ffffff, #dcdcdc)",
+      "image": "Kitchen Storage Sets.jpe",
+      "description": "Set wadah penyimpanan dapur keramik berkualitas dengan tutup bambu kedap udara. Menjaga bahan makanan tetap segar sekaligus mempercantik dapur.",
+      "images": [
+        "Kitchen Storage Sets.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Putih",
+          "hex": "#ffffff"
+        }
+      ],
+      "sizes": [
+        "3-Pieces"
+      ],
+      "stock": true,
+      "specs": {
+        "Bahan": "Keramik & Tutup Bambu Alami",
+        "Seal": "Silikon Kedap Udara",
+        "Isi Set": "3 Wadah (Kopi, Teh, Gula)"
+      },
+      "reviews": []
+    },
+    {
+      "id": 38,
+      "name": "Smeg Stand Mixer Black SMF01",
+      "vendor": "KitchenPro",
+      "category": "dapur",
+      "price": 10500000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★★",
+      "ratingCount": 31,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #2b2b2b, #000000)",
+      "image": "SMEG SMF01BLUK Smeg SMF01BLUK Stand Mixer Black.jpe",
+      "description": "Stand mixer Smeg bergaya retro khas tahun 50-an dengan bodi hitam mengkilap, mangkuk stainless steel 4.8L, dan motor bertenaga 800W.",
+      "images": [
+        "SMEG SMF01BLUK Smeg SMF01BLUK Stand Mixer Black.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Hitam Glossy",
+          "hex": "#111111"
+        }
+      ],
+      "sizes": [],
+      "stock": true,
+      "specs": {
+        "Daya": "800 Watt",
+        "Kapasitas Mangkuk": "4.8 Liter Stainless Steel",
+        "Tingkat Kecepatan": "10 Speeds dengan Smooth Start"
+      },
+      "reviews": []
+    },
+    {
+      "id": 39,
+      "name": "Vancasso Stoneware Dinnerware Set",
+      "vendor": "KitchenPro",
+      "category": "dapur",
+      "price": 3200000,
+      "originalPrice": null,
+      "discount": null,
+      "rating": "★★★★★",
+      "ratingCount": 16,
+      "badge": "new",
+      "badgeText": "New",
+      "color": "linear-gradient(145deg, #7b949c, #4e666e)",
+      "image": "Vancasso  32 Piece Stoneware  Dinnerware Set.jpe",
+      "description": "Set peralatan makan keramik stoneware Vancasso isi 32 buah dengan glasir bermotif buatan tangan yang mewah dan tahan lama untuk hidangan harian Anda.",
+      "images": [
+        "Vancasso  32 Piece Stoneware  Dinnerware Set.jpe"
+      ],
+      "colors": [
+        {
+          "name": "Mottled Blue",
+          "hex": "#4e666e"
+        }
+      ],
+      "sizes": [
+        "32-Pieces"
+      ],
+      "stock": true,
+      "specs": {
+        "Bahan": "Keramik Stoneware Premium",
+        "Isi Set": "8x Piring Makan, 8x Piring Kue, 8x Mangkuk, 8x Mug",
+        "Keamanan": "Microwave & Dishwasher Safe"
+      },
+      "reviews": []
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keranjang Belanja — Vendora</title>
+
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  <!-- =============================================
+       GOOGLE FONTS
+       - "Playfair Display" untuk judul besar (elegan)
+       - "DM Sans" untuk teks biasa (clean & modern)
+  ============================================= -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =============================================
+       NAVBAR (sama seperti index.html)
+  ============================================= -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Ven<span>dora</span></a>
+
+      <ul class="navbar-menu" id="navMenu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#categories">Kategori</a></li>
+        <li><a href="index.html#products">Produk</a></li>
+        <li><a href="index.html#vendors">Vendor</a></li>
+        <li><a href="#">Tentang</a></li>
+      </ul>
+
+      <div class="navbar-icons">
+        <button title="Cari">🔍</button>
+        <button title="Wishlist">🤍</button>
+        <button title="Keranjang" onclick="window.location.href='cart.html'">
+          🛒
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button class="navbar-toggle" id="navToggle" title="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       CHECKOUT STEPPER
+       Progres: Keranjang (aktif) -> Pengiriman & Pembayaran -> Selesai
+  ============================================= -->
+  <div class="checkout-stepper">
+    <div class="checkout-stepper-inner">
+      <div class="stepper-step active">
+        <div class="stepper-circle">1</div>
+        <div class="stepper-label">Keranjang</div>
+      </div>
+      <div class="stepper-line"><div class="stepper-line-fill" style="width:0%"></div></div>
+      <div class="stepper-step">
+        <div class="stepper-circle">2</div>
+        <div class="stepper-label">Pengiriman &amp; Pembayaran</div>
+      </div>
+      <div class="stepper-line"><div class="stepper-line-fill" style="width:0%"></div></div>
+      <div class="stepper-step">
+        <div class="stepper-circle">3</div>
+        <div class="stepper-label">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       ISI HALAMAN KERANJANG
+  ============================================= -->
+  <div class="cart-page-inner">
+    <h1 class="page-heading">Keranjang Belanja</h1>
+    <p class="page-subheading" id="cartItemCountText">Periksa kembali produk pilihanmu sebelum lanjut ke pembayaran</p>
+
+    <!-- ---------- KERANJANG KOSONG ---------- -->
+    <div class="cart-empty-state" id="cartEmptyState">
+      <div class="cart-empty-icon"><iconify-icon icon="solar:cart-large-minimalistic-linear"></iconify-icon></div>
+      <h3>Keranjang kamu masih kosong</h3>
+      <p>Yuk jelajahi produk-produk pilihan dari ribuan vendor terpercaya dan temukan yang kamu suka.</p>
+      <button class="btn-primary" onclick="window.location.href='index.html#products'">Mulai Belanja</button>
+    </div>
+
+    <!-- ---------- ISI KERANJANG ---------- -->
+    <div class="cart-layout" id="cartContent">
+
+      <!-- Kolom kiri: daftar item -->
+      <div class="cart-items-list" id="cartItemsList">
+        <!-- Diisi otomatis oleh JS -->
+      </div>
+
+      <!-- Kolom kanan: ringkasan & kode promo -->
+      <div class="summary-card">
+        <h3>Ringkasan Belanja</h3>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="summarySubtotal">Rp 0</span>
+        </div>
+        <div class="summary-row discount" id="summaryDiscountRow" style="display:none">
+          <span>Diskon Promo</span>
+          <span id="summaryDiscount">-Rp 0</span>
+        </div>
+        <div class="summary-row">
+          <span>Ongkos Kirim</span>
+          <span id="summaryShipping">Rp 0</span>
+        </div>
+
+        <hr class="summary-divider">
+
+        <div class="summary-total-row">
+          <span>Total</span>
+          <span id="summaryTotal">Rp 0</span>
+        </div>
+
+        <div class="free-ship-note" id="freeShipNote"></div>
+
+        <!-- Kode promo -->
+        <div class="promo-group">
+          <input type="text" id="promoInput" placeholder="Kode promo (mis. VENDORA)" maxlength="20">
+          <button type="button" onclick="applyPromoCode()">Pakai</button>
+        </div>
+        <div class="promo-msg" id="promoMsg"></div>
+
+        <button class="btn-checkout" id="checkoutBtn" onclick="window.location.href='checkout.html'">
+          Lanjut ke Pembayaran <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+        </button>
+
+        <div class="summary-trust">
+          <span class="summary-trust-item"><iconify-icon icon="solar:shield-check-linear"></iconify-icon> Pembayaran Aman</span>
+          <span class="summary-trust-item"><iconify-icon icon="solar:delivery-linear"></iconify-icon> Pengiriman Terlacak</span>
+          <span class="summary-trust-item"><iconify-icon icon="solar:undo-left-linear"></iconify-icon> Retur 7 Hari</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="index.html#products" class="continue-shopping-link">
+      <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> Lanjutkan Belanja
+    </a>
+  </div>
+
+  <!-- =============================================
+       FOOTER (sama seperti index.html)
+  ============================================= -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Ven<span>dora</span></div>
+          <p class="footer-desc">
+            Platform belanja multi-vendor terpercaya dengan ribuan produk pilihan dari vendor terbaik di seluruh
+            Indonesia.
+          </p>
+          <div class="social-links">
+            <button class="social-btn"><iconify-icon icon="mdi:facebook"></iconify-icon></button>
+            <button class="social-btn"><iconify-icon icon="mdi:instagram"></iconify-icon></button>
+            <button class="social-btn"><iconify-icon icon="mdi:twitter"></iconify-icon></button>
+            <button class="social-btn"><iconify-icon icon="mdi:youtube"></iconify-icon></button>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Belanja</h4>
+          <ul>
+            <li><a href="#">Semua Produk</a></li>
+            <li><a href="#">Flash Sale</a></li>
+            <li><a href="#">Produk Baru</a></li>
+            <li><a href="#">Terlaris</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Vendor</h4>
+          <ul>
+            <li><a href="#">Daftar Vendor</a></li>
+            <li><a href="#">Dashboard Vendor</a></li>
+            <li><a href="#">Syarat &amp; Ketentuan</a></li>
+            <li><a href="#">Panduan Berjualan</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Bantuan</h4>
+          <ul>
+            <li><a href="#">Pusat Bantuan</a></li>
+            <li><a href="#">Cara Pemesanan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Kontak Kami</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 Vendora. Hak cipta dilindungi.</span>
+        <span>Dibuat dengan ❤️ oleh Tim Vendora</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notifikasi -->
+  <div class="toast" id="toast">
+    <span>✅</span>
+    <span id="toastMsg">Produk ditambahkan ke keranjang!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

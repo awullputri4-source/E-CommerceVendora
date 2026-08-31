@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Koleksi Baru — Produk Terbaru | Vendora</title>
+  <meta name="description" content="Koleksi Terbaru Vendora — Temukan produk-produk baru yang baru saja tiba dari vendor terpercaya kami.">
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* =============================================
+       NEW ARRIVALS PAGE — Exclusive Styles
+    ============================================= */
+
+    /* ---------- HERO ---------- */
+    .na-hero {
+      margin-top: 68px;
+      background: linear-gradient(135deg, #fdfbf7 0%, #ebdccb 50%, #dfcab5 100%);
+      padding: 4.5rem 2rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle dot pattern */
+    .na-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(150,117,91,.18) 1.5px, transparent 1.5px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+
+    /* Floating orb accents */
+    .na-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+    }
+    .na-orb-1 { width:400px;height:400px;background:rgba(150,117,91,.22);top:-120px;right:-80px; }
+    .na-orb-2 { width:200px;height:200px;background:rgba(120,89,67,.16);bottom:-60px;left:80px; }
+
+    .na-hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    /* Eyebrow tag */
+    .na-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: rgba(150,117,91,.18);
+      border: 1px solid rgba(150,117,91,.35);
+      border-radius: 100px;
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .na-eyebrow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: naPulse 2s ease-in-out infinite;
+    }
+    @keyframes naPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.3);opacity:.6} }
+
+    .na-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      color: #1a1208;
+      line-height: 1.12;
+      margin-bottom: .8rem;
+    }
+
+    .na-hero-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .na-hero-sub {
+      font-size: .95rem;
+      color: #5a4e3a;
+      max-width: 460px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* Highlight chips */
+    .na-hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+    }
+
+    .na-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: 7px 16px;
+      background: white;
+      border: 1.5px solid rgba(150,117,91,.3);
+      border-radius: 100px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--dark-soft);
+      box-shadow: 0 2px 8px rgba(150,117,91,.1);
+    }
+
+    .na-chip iconify-icon { color: var(--accent); font-size: .9rem; }
+
+    /* Collection banner card on right */
+    .na-hero-card {
+      width: 280px;
+      flex-shrink: 0;
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.12);
+      border: 1px solid rgba(150,117,91,.2);
+    }
+
+    .na-hero-card-top {
+      height: 160px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .na-hero-card-top::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; right: -30px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.1);
+    }
+
+    .na-hero-card-body {
+      padding: 1.2rem;
+    }
+
+    .na-hero-card-label {
+      font-size: .68rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: .35rem;
+    }
+
+    .na-hero-card-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--dark);
+      font-weight: 700;
+      margin-bottom: .8rem;
+    }
+
+    .na-hero-card-stats {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .na-card-stat { display:flex;flex-direction:column; }
+    .na-card-stat-num { font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--accent-dark); }
+    .na-card-stat-lbl { font-size:.65rem;color:var(--gray);font-weight:500; }
+
+    /* ---------- FILTER BAR ---------- */
+    .na-filter-bar {
+      background: white;
+      border-bottom: 1px solid var(--gray-light);
+      position: sticky;
+      top: 68px;
+      z-index: 99;
+    }
+
+    .na-filter-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .na-cat-tabs {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+
+    .na-cat-tab {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      padding: 1.1rem 1.3rem;
+      font-size: .84rem;
+      font-weight: 600;
+      color: var(--gray);
+      border-bottom: 2.5px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: var(--font-body);
+    }
+
+    .na-cat-tab.active {
+      color: var(--accent-dark);
+      border-bottom-color: var(--accent);
+    }
+
+    .na-cat-tab iconify-icon { font-size: 1rem; }
+
+    /* Sort select */
+    .na-sort-wrap {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      flex-shrink: 0;
+    }
+
+    .na-sort-label {
+      font-size: .78rem;
+      color: var(--gray);
+      white-space: nowrap;
+    }
+
+    .na-sort-select {
+      padding: 7px 28px 7px 12px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: .8rem;
+      color: var(--dark);
+      background: white;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      background-size: 14px;
+    }
+
+    .na-sort-select:focus { outline:none;border-color:var(--accent); }
+
+    /* ---------- PAGE BODY ---------- */
+    .na-page-body {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 5rem;
+    }
+
+    .na-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .na-section-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .na-new-dot {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      background: var(--accent);
+      border-radius: 100px;
+      font-size: .62rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: .5px;
+      vertical-align: middle;
+    }
+
+    .na-result-count {
+      font-size: .85rem;
+      color: var(--gray);
+    }
+    .na-result-count strong { color: var(--accent-dark); }
+
+    /* Products grid */
+    #naProductGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* NEW tag badge on cards */
+    .na-new-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      font-size: .62rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 100px;
+      letter-spacing: .5px;
+      z-index: 2;
+      box-shadow: 0 4px 12px rgba(150,117,91,.4);
+      text-transform: uppercase;
+    }
+
+    /* "Just arrived" sub info */
+    .na-arrived-info {
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .7rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: .3rem;
+    }
+    .na-arrived-info iconify-icon { font-size: .85rem; }
+
+    /* Empty state */
+    .na-empty {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .na-empty iconify-icon { font-size:3rem;color:var(--gray-light);display:block;margin-bottom:1rem; }
+    .na-empty h3 { font-family:var(--font-display);color:var(--dark);margin-bottom:.5rem; }
+    .na-empty p  { color:var(--gray);font-size:.9rem; }
+
+    /* ---------- FEATURED COLLECTION STRIP ---------- */
+    .na-feature-strip {
+      background: linear-gradient(135deg, var(--accent-dark), #5a3f2b);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .na-feature-left { flex: 1; }
+
+    .na-feature-label {
+      font-size: .72rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.6);
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      margin-bottom: .4rem;
+    }
+
+    .na-feature-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: .4rem;
+    }
+
+    .na-feature-sub {
+      font-size: .85rem;
+      color: rgba(255,255,255,.7);
+    }
+
+    .na-feature-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: 12px 28px;
+      background: white;
+      color: var(--accent-dark);
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: .85rem;
+      font-family: var(--font-body);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      flex-shrink: 0;
+    }
+
+    .na-feature-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media(max-width:900px){
+      .na-hero-inner { grid-template-columns: 1fr; }
+      .na-hero-card  { display: none; }
+    }
+    @media(max-width:768px){
+      .na-filter-inner { flex-direction:column;align-items:flex-start;padding:.6rem 1.2rem; }
+      .na-sort-wrap    { width:100%; }
+      .na-sort-select  { flex:1; }
+    }
+    @media(max-width:480px){
+      .na-hero  { padding:2.5rem 1.2rem 2rem; }
+      .na-page-body { padding:1.5rem 1.2rem 4rem; }
+      .na-feature-strip { flex-direction:column;text-align:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Ven<span>dora</span></a>
+      <ul class="navbar-menu" id="navMenu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#categories">Kategori</a></li>
+        <li><a href="index.html#products">Produk</a></li>
+        <li><a href="index.html#vendors">Vendor</a></li>
+        <li><a href="#">Tentang</a></li>
+      </ul>
+      <div class="navbar-icons">
+        <button title="Cari">🔍</button>
+        <button title="Wishlist">🤍</button>
+        <button title="Keranjang" onclick="window.location.href='cart.html'">
+          🛒<span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button class="navbar-toggle" id="navToggle" title="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="na-hero">
+    <div class="na-orb na-orb-1"></div>
+    <div class="na-orb na-orb-2"></div>
+    <div class="na-hero-inner">
+      <div>
+        <div class="na-eyebrow">
+          <span class="na-eyebrow-dot"></span>
+          Baru Tiba · Koleksi 2025
+        </div>
+        <h1 class="na-hero-title">
+          Produk <em>Terbaru</em><br>
+          Pilihan Editor
+        </h1>
+        <p class="na-hero-sub">
+          Temukan koleksi terbaru yang baru saja tiba dari vendor-vendor terpercaya kami.
+          Kualitas premium, desain modern, harga terjangkau.
+        </p>
+        <div class="na-hero-chips">
+          <span class="na-chip"><iconify-icon icon="solar:star-bold"></iconify-icon> Kurasi Terbaik</span>
+          <span class="na-chip"><iconify-icon icon="solar:shield-check-bold"></iconify-icon> Terverifikasi</span>
+          <span class="na-chip"><iconify-icon icon="solar:delivery-bold"></iconify-icon> Pengiriman Cepat</span>
+          <span class="na-chip"><iconify-icon icon="solar:refresh-bold"></iconify-icon> Retur 7 Hari</span>
+        </div>
+      </div>
+
+      <!-- Mini collection card -->
+      <div class="na-hero-card">
+        <div class="na-hero-card-top">🪑</div>
+        <div class="na-hero-card-body">
+          <div class="na-hero-card-label">✦ Koleksi Unggulan</div>
+          <div class="na-hero-card-title">Furniture Premium 2025</div>
+          <div class="na-hero-card-stats">
+            <div class="na-card-stat">
+              <span class="na-card-stat-num" id="naHeroCount">0</span>
+              <span class="na-card-stat-lbl">Produk Baru</span>
+            </div>
+            <div class="na-card-stat">
+              <span class="na-card-stat-num">4.8★</span>
+              <span class="na-card-stat-lbl">Rating Rata-Rata</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="na-filter-bar">
+    <div class="na-filter-inner">
+      <div class="na-cat-tabs">
+        <button class="na-cat-tab active" onclick="filterNA('all',this)">
+          <iconify-icon icon="solar:widget-linear"></iconify-icon> Semua
+        </button>
+        <button class="na-cat-tab" onclick="filterNA('furniture',this)">
+          <iconify-icon icon="solar:sofa-linear"></iconify-icon> Furniture
+        </button>
+        <button class="na-cat-tab" onclick="filterNA('fashion',this)">
+          <iconify-icon icon="hugeicons:dress-03"></iconify-icon> Fashion
+        </button>
+        <button class="na-cat-tab" onclick="filterNA('elektronik',this)">
+          <iconify-icon icon="solar:laptop-linear"></iconify-icon> Elektronik
+        </button>
+        <button class="na-cat-tab" onclick="filterNA('Cosmetics',this)">
+          <iconify-icon icon="solar:cosmetic-linear"></iconify-icon> Kecantikan
+        </button>
+      </div>
+
+      <div class="na-sort-wrap">
+        <span class="na-sort-label">Urutkan:</span>
+        <select class="na-sort-select" id="naSort" onchange="onNASortChange()">
+          <option value="default">Terbaru</option>
+          <option value="price-asc">Harga Terendah</option>
+          <option value="price-desc">Harga Tertinggi</option>
+          <option value="rating">Rating Terbaik</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE BODY -->
+  <div class="na-page-body">
+
+    <!-- Featured strip -->
+    <div class="na-feature-strip">
+      <div class="na-feature-left">
+        <div class="na-feature-label">✦ Sorotan Minggu Ini</div>
+        <div class="na-feature-title">Furniture Premium 2025</div>
+        <div class="na-feature-sub">Koleksi furniture minimalis dengan desain eksklusif yang belum pernah ada sebelumnya.</div>
+      </div>
+      <a href="category.html?cat=furniture" class="na-feature-btn">
+        <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+        Lihat Koleksi
+      </a>
+    </div>
+
+    <!-- Grid header -->
+    <div class="na-section-header">
+      <h2 class="na-section-title">
+        Produk Terbaru
+        <span class="na-new-dot">NEW</span>
+      </h2>
+      <span class="na-result-count" id="naCount"><strong>0</strong> produk ditemukan</span>
+    </div>
+
+    <div id="naProductGrid"></div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"><span>✅</span><span id="toastMsg">Berhasil!</span></div>
+
+  <script src="script.js"></script>
+  <script>
+    /* =============================================
+       NEW ARRIVALS PAGE LOGIC
+    ============================================= */
+
+    let naCurrentCat  = 'all';
+    let naCurrentSort = 'default';
+
+    /* New products: badge = "new" */
+    function getNewProducts(cat = 'all', sort = 'default') {
+      let list = products.filter(p => p.badge === 'new');
+      if (cat !== 'all') list = list.filter(p => p.category === cat);
+
+      switch(sort) {
+        case 'price-asc':  list = [...list].sort((a,b) => a.price - b.price); break;
+        case 'price-desc': list = [...list].sort((a,b) => b.price - a.price); break;
+        case 'rating':
+          list = [...list].sort((a,b) => {
+            const sa = (a.rating.match(/★/g)||[]).length;
+            const sb = (b.rating.match(/★/g)||[]).length;
+            return sb - sa;
+          });
+          break;
+      }
+      return list;
+    }
+
+    function filterNA(cat, btn) {
+      naCurrentCat = cat;
+      document.querySelectorAll('.na-cat-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      renderNAProducts();
+    }
+
+    function onNASortChange() {
+      naCurrentSort = document.getElementById('naSort').value;
+      renderNAProducts();
+    }
+
+    function renderNAProducts() {
+      const grid    = document.getElementById('naProductGrid');
+      const countEl = document.getElementById('naCount');
+      const heroCount = document.getElementById('naHeroCount');
+      const list    = getNewProducts(naCurrentCat, naCurrentSort);
+      const allNew  = getNewProducts('all', 'default');
+
+      if (heroCount) heroCount.textContent = allNew.length;
+
+      grid.innerHTML = '';
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="na-empty">
+            <iconify-icon icon="solar:box-minimalistic-linear"></iconify-icon>
+            <h3>Belum ada produk baru di kategori ini</h3>
+            <p>Koleksi baru sedang dalam perjalanan. Cek kembali segera!</p>
+          </div>`;
+        if (countEl) countEl.innerHTML = '<strong>0</strong> produk ditemukan';
+        return;
+      }
+
+      if (countEl) countEl.innerHTML = `<strong>${list.length}</strong> produk ditemukan`;
+
+      list.forEach((p, idx) => {
+        const priceF  = formatRupiah(p.price);
+        const origF   = p.originalPrice ? formatRupiah(p.originalPrice) : '';
+        const discHTML = p.originalPrice
+          ? `<span class="price-original">${origF}</span><span class="price-discount">-${p.discount}</span>`
+          : '';
+
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.style.animationDelay = (idx * 0.05) + 's';
+        card.innerHTML = `
+          <div class="product-img" style="position:relative">
+            <img src="${p.image}" alt="${p.name}">
+            <span class="na-new-tag">✦ Baru</span>
+            <button class="wishlist-btn" id="wish-na-${p.id}" onclick="toggleWishlist(${p.id},event)">
+              <span>🤍</span>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-vendor">${p.vendor}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-rating">
+              <span class="stars">${p.rating}</span>
+              <span class="rating-count">(${p.ratingCount})</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">${priceF}</span>
+              ${discHTML}
+            </div>
+            <div class="na-arrived-info">
+              <iconify-icon icon="solar:clock-circle-linear"></iconify-icon>
+              Baru Tiba · Stok Terbatas
+            </div>
+            <button class="btn-add-cart" onclick="event.stopPropagation();addToCart(${p.id})">
+              + Tambah ke Keranjang
+            </button>
+          </div>`;
+
+        card.addEventListener('click', () => { window.location.href = `product.html?id=${p.id}`; });
+        grid.appendChild(card);
+
+        if (wishlist.includes(p.id)) {
+          const btn = card.querySelector('.wishlist-btn');
+          if (btn) { btn.classList.add('active'); btn.querySelector('span').textContent = '❤️'; }
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartBadge();
+      renderNAProducts();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detail Produk — Vendora</title>
+
+  <!-- =============================================
+       GOOGLE FONTS
+       - "Playfair Display" untuk judul besar (elegan)
+       - "DM Sans" untuk teks biasa (clean & modern)
+  ============================================= -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =============================================
+       NAVBAR (sama seperti index.html)
+  ============================================= -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar-logo">Ven<span>dora</span></a>
+
+      <!-- Menu navigasi (di desktop) -->
+      <ul class="navbar-menu" id="navMenu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#categories">Kategori</a></li>
+        <li><a href="index.html#products">Produk</a></li>
+        <li><a href="index.html#vendors">Vendor</a></li>
+        <li><a href="#">Tentang</a></li>
+      </ul>
+
+      <!-- Ikon kanan -->
+      <div class="navbar-icons">
+        <button title="Cari">🔍</button>
+        <button title="Wishlist">🤍</button>
+        <!-- Tombol cart dengan badge jumlah item -->
+        <button title="Keranjang" onclick="window.location.href='cart.html'">
+          🛒
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <!-- Tombol hamburger (muncul di mobile) -->
+        <button class="navbar-toggle" id="navToggle" title="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- =============================================
+       BREADCRUMB
+       Menunjukkan posisi halaman: Beranda > Produk > Nama Produk
+  ============================================= -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Beranda</a>
+      <span>/</span>
+      <a href="index.html#products">Produk</a>
+      <span>/</span>
+      <!-- Diisi otomatis oleh JS sesuai nama produk -->
+      <span id="breadcrumbProduct">Detail Produk</span>
+    </div>
+  </div>
+
+  <!-- =============================================
+       PRODUCT DETAIL SECTION
+       Bagian utama: gambar produk + info & aksi
+  ============================================= -->
+  <section class="product-detail">
+    <div class="product-detail-inner">
+
+      <!-- ============ GALERI GAMBAR (KIRI) ============ -->
+      <div class="product-gallery">
+        <!-- Gambar utama (placeholder warna, diisi via JS) -->
+        <div class="gallery-main" id="galleryMain">
+          <span class="gallery-badge" id="galleryBadge"></span>
+        </div>
+        <!-- Thumbnail kecil di bawah gambar utama -->
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+      </div>
+
+      <!-- ============ INFO PRODUK (KANAN) ============ -->
+      <div class="product-info-detail">
+
+        <!-- Nama vendor (klik → bisa diarahkan ke halaman vendor) -->
+        <a href="index.html#vendors" class="product-detail-vendor" id="detailVendor">Vendor</a>
+
+        <!-- Nama produk -->
+        <h1 class="product-detail-name" id="detailName">Nama Produk</h1>
+
+        <!-- Rating & jumlah ulasan -->
+        <div class="product-detail-rating">
+          <span class="stars" id="detailStars">★★★★★</span>
+          <span class="rating-count" id="detailRatingCount">(0)</span>
+          <span class="rating-sep">•</span>
+          <span class="stock-status" id="detailStock">Stok Tersedia</span>
+        </div>
+
+        <!-- Harga & diskon -->
+        <div class="product-detail-price">
+          <span class="price-current-lg" id="detailPrice">Rp 0</span>
+          <span class="price-original-lg" id="detailOriginalPrice"></span>
+          <span class="price-discount-lg" id="detailDiscount"></span>
+        </div>
+
+        <!-- Deskripsi singkat produk -->
+        <p class="product-detail-desc" id="detailDesc">
+          Deskripsi produk akan tampil di sini.
+        </p>
+
+        <!-- Pilihan varian (warna) -->
+        <div class="option-group" id="colorOptionGroup">
+          <span class="option-label">Warna</span>
+          <div class="option-list" id="colorOptions"></div>
+        </div>
+
+        <!-- Pilihan varian (ukuran) -->
+        <div class="option-group" id="sizeOptionGroup">
+          <span class="option-label">Ukuran</span>
+          <div class="option-list" id="sizeOptions"></div>
+        </div>
+
+        <!-- Pengatur jumlah (quantity) -->
+        <div class="option-group">
+          <span class="option-label">Jumlah</span>
+          <div class="qty-control">
+            <button class="qty-btn" id="qtyMinus" title="Kurangi">−</button>
+            <input type="text" class="qty-input" id="qtyInput" value="1" readonly>
+            <button class="qty-btn" id="qtyPlus" title="Tambah">+</button>
+          </div>
+        </div>
+
+        <!-- Tombol aksi utama -->
+        <div class="product-detail-actions">
+          <button class="btn-add-cart-lg" id="addToCartBtn">
+            🛒 Tambah ke Keranjang
+          </button>
+          <button class="btn-buy-now" id="buyNowBtn">
+            Beli Sekarang
+          </button>
+          <button class="wishlist-btn-lg" id="wishlistDetailBtn" title="Tambah ke Wishlist">
+            <span>🤍</span>
+          </button>
+        </div>
+
+        <!-- Info pengiriman & keamanan -->
+        <div class="product-trust-info">
+          <div class="trust-item">
+            <span class="trust-icon">🚚</span>
+            <div>
+              <strong>Pengiriman Cepat</strong>
+              <p>Estimasi tiba 2-4 hari kerja</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">↩️</span>
+            <div>
+              <strong>Garansi Pengembalian</strong>
+              <p>Pengembalian gratis dalam 7 hari</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">🛡️</span>
+            <div>
+              <strong>Pembayaran Aman</strong>
+              <p>Transaksi terenkripsi & terlindungi</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =============================================
+       TABS SECTION
+       Deskripsi lengkap, spesifikasi, ulasan
+  ============================================= -->
+  <section class="product-tabs-section">
+    <div class="product-tabs-inner">
+
+      <!-- Navigasi tab -->
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="description">Deskripsi</button>
+        <button class="tab-btn" data-tab="specs">Spesifikasi</button>
+        <button class="tab-btn" data-tab="reviews">Ulasan</button>
+      </div>
+
+      <!-- Konten tab: Deskripsi -->
+      <div class="tab-content active" id="tab-description">
+        <p id="fullDescription">
+          Deskripsi lengkap produk akan tampil di sini. Produk ini dibuat dengan bahan
+          berkualitas tinggi dan dirancang untuk kenyamanan serta daya tahan jangka panjang.
+        </p>
+      </div>
+
+      <!-- Konten tab: Spesifikasi -->
+      <div class="tab-content" id="tab-specs">
+        <table class="specs-table" id="specsTable">
+          <!-- Diisi otomatis oleh JS -->
+        </table>
+      </div>
+
+      <!-- Konten tab: Ulasan -->
+      <div class="tab-content" id="tab-reviews">
+        <div class="reviews-summary">
+          <div class="reviews-score">
+            <strong id="reviewAvgScore">4.8</strong>
+            <span class="stars" id="reviewAvgStars">★★★★★</span>
+            <span id="reviewTotalCount">Berdasarkan 0 ulasan</span>
+          </div>
+        </div>
+        <div class="reviews-list" id="reviewsList">
+          <!-- Diisi otomatis oleh JS -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =============================================
+       RELATED PRODUCTS SECTION
+       Produk lain yang serupa / dari vendor yang sama
+  ============================================= -->
+  <section class="related-products">
+    <div class="section-header">
+      <p class="section-label">Mungkin Kamu Suka</p>
+      <h2 class="section-title">Produk Terkait</h2>
+    </div>
+    <div class="products-grid" id="relatedGrid">
+      <!-- Diisi otomatis oleh JS -->
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER (sama seperti index.html)
+  ============================================= -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+
+        <!-- Kolom 1: Info toko -->
+        <div>
+          <div class="footer-logo">Ven<span>dora</span></div>
+          <p class="footer-desc">
+            Platform belanja multi-vendor terpercaya dengan ribuan produk pilihan dari vendor terbaik di seluruh Indonesia.
+          </p>
+          <div class="social-links">
+            <button class="social-btn">📘</button>
+            <button class="social-btn">📷</button>
+            <button class="social-btn">🐦</button>
+            <button class="social-btn">▶️</button>
+          </div>
+        </div>
+
+        <!-- Kolom 2 -->
+        <div class="footer-col">
+          <h4>Belanja</h4>
+          <ul>
+            <li><a href="#">Semua Produk</a></li>
+            <li><a href="#">Flash Sale</a></li>
+            <li><a href="#">Produk Baru</a></li>
+            <li><a href="#">Terlaris</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3 -->
+        <div class="footer-col">
+          <h4>Vendor</h4>
+          <ul>
+            <li><a href="#">Daftar Vendor</a></li>
+            <li><a href="#">Dashboard Vendor</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+            <li><a href="#">Panduan Berjualan</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 4 -->
+        <div class="footer-col">
+          <h4>Bantuan</h4>
+          <ul>
+            <li><a href="#">Pusat Bantuan</a></li>
+            <li><a href="#">Cara Pemesanan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Kontak Kami</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer bawah -->
+      <div class="footer-bottom">
+        <span>© 2025 Vendora. Hak cipta dilindungi.</span>
+        <span>Dibuat dengan ❤️ oleh Tim Vendora</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notifikasi -->
+  <div class="toast" id="toast">
+    <span>✅</span>
+    <span id="toastMsg">Produk ditambahkan ke keranjang!</span>
+  </div>
+
+  <!-- =============================================
+       JAVASCRIPT
+       Semua logika interaksi halaman
+  ============================================= -->
+  <script src="script.js"></script>
+
+</body>
+</html>

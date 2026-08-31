@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flash Sale — Diskon Hingga 70% | Vendora</title>
+  <meta name="description" content="Flash Sale Vendora — Dapatkan diskon hingga 70% untuk produk pilihan. Penawaran terbatas, jangan sampai ketinggalan!">
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* =============================================
+       FLASH SALE PAGE — Exclusive Styles
+    ============================================= */
+    :root {
+      --fire-red:    #150903;
+      --fire-orange: #24170d;
+      --fire-yellow: #9b644f;
+      --sale-dark:   #111827;
+      --sale-card:   #1f2937;
+      --sale-border: #374151;
+    }
+
+    /* ---------- HERO SECTION ---------- */
+    .fs-hero {
+      margin-top: 68px;
+      background: linear-gradient(135deg, #0f0f0f 0%, #b5a08b 40%, #523f26 100%);
+      padding: 4rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated background grid */
+    .fs-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(239,68,68,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(239,68,68,.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    /* Glowing orbs */
+    .fs-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .fs-orb-1 { width:320px;height:320px;background:rgba(239,68,68,.18);top:-80px;left:-60px; }
+    .fs-orb-2 { width:260px;height:260px;background:rgba(249,115,22,.14);bottom:-60px;right:80px; }
+
+    .fs-hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* Live badge */
+    .fs-live-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: rgba(239,68,68,.2);
+      border: 1px solid rgba(239,68,68,.4);
+      border-radius: 100px;
+      font-size: .72rem;
+      font-weight: 700;
+      color: #fca5a5;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: .9rem;
+    }
+    .fs-live-dot { width:7px;height:7px;border-radius:50%;background:#ef4444;animation:blink 1.1s infinite; }
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+    .fs-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.15;
+      margin-bottom: .5rem;
+    }
+
+    .fs-hero-title .fire-text {
+      background: linear-gradient(90deg, var(--fire-red), var(--fire-orange), var(--fire-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .fs-hero-sub {
+      font-size: .95rem;
+      color: #303132cb;
+      margin-bottom: 1.6rem;
+    }
+
+    /* ---------- COUNTDOWN TIMER ---------- */
+    .fs-countdown-label {
+      font-size: .68rem;
+      font-weight: 700;
+      color: #000000d4;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      margin-bottom: .5rem;
+    }
+
+    .fs-countdown {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .fs-count-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px;
+      padding: .6rem .9rem;
+      min-width: 58px;
+    }
+
+    .fs-count-num {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+
+    .fs-count-lbl {
+      font-size: .6rem;
+      color: #000000;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      margin-top: .25rem;
+    }
+
+    .fs-colon {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: .5rem;
+    }
+
+    /* Stat strip */
+    .fs-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .fs-stat-item { display:flex;flex-direction:column; }
+    .fs-stat-num  { font-family:var(--font-display);font-size:1.5rem;font-weight:700; }
+    .fs-stat-txt  { font-size:.72rem;color:#2d1e0b; }
+    .fs-stat-num.red    { color:var(--fire-red); }
+    .fs-stat-num.orange { color:var(--fire-orange); }
+    .fs-stat-num.yellow { color:white; }
+
+    /* Big discount badge on hero */
+    .fs-badge-big {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: conic-gradient(var(--fire-red) 0%, var(--fire-orange) 50%, var(--fire-yellow) 100%);
+      box-shadow: 0 0 60px rgba(56, 33, 14, 0.35);
+      color: white;
+      flex-shrink: 0;
+      animation: rotate 8s linear infinite;
+      position: relative;
+    }
+    .fs-badge-big::after {
+      content:'';
+      position:absolute;
+      inset:6px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#1c0a00,#2a1200);
+    }
+    .fs-badge-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .fs-badge-pct {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--fire-orange), var(--fire-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .fs-badge-off { font-size:.8rem;color:#fca5a5;font-weight:600; }
+    @keyframes rotate { from{box-shadow:0 0 60px rgba(239,68,68,.35)} to{box-shadow:0 0 80px rgba(249,115,22,.5)} }
+
+    /* ---------- FILTER TABS ---------- */
+    .fs-tabs-wrap {
+      background: white;
+      border-bottom: 1px solid var(--gray-light);
+      position: sticky;
+      top: 68px;
+      z-index: 99;
+    }
+
+    .fs-tabs {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+    }
+
+    .fs-tab {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      padding: 1.1rem 1.4rem;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--gray);
+      border-bottom: 2.5px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: var(--font-body);
+    }
+
+    .fs-tab.active {
+      color: var(--fire-red);
+      border-bottom-color: var(--fire-red);
+    }
+
+    .fs-tab iconify-icon { font-size: 1rem; }
+
+    /* ---------- PRODUCTS GRID ---------- */
+    .fs-page-body {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 5rem;
+    }
+
+    .fs-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .fs-section-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--dark);
+    }
+
+    .fs-result-count {
+      font-size: .85rem;
+      color: var(--gray);
+    }
+
+    .fs-result-count strong { color: var(--fire-red); }
+
+    /* Product grid reuse existing .products-grid */
+    #fsProductGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Discount tag overlay — on top of product image */
+    .fs-discount-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: linear-gradient(135deg, var(--fire-red), var(--fire-orange));
+      color: white;
+      font-size: .72rem;
+      font-weight: 800;
+      padding: 5px 10px;
+      border-radius: 100px;
+      letter-spacing: .3px;
+      z-index: 2;
+      box-shadow: 0 4px 12px rgba(239,68,68,.4);
+    }
+
+    /* Savings pill below price */
+    .fs-savings {
+      display: inline-block;
+      margin-top: .3rem;
+      padding: 3px 8px;
+      background: #fef2f2;
+      border-radius: 100px;
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--fire-red);
+    }
+
+    /* No results */
+    .fs-empty {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .fs-empty iconify-icon { font-size: 3rem; color: var(--gray-light); display:block;margin-bottom:1rem; }
+    .fs-empty h3 { font-family:var(--font-display);color:var(--dark);margin-bottom:.5rem; }
+    .fs-empty p  { color:var(--gray);font-size:.9rem; }
+
+    @media(max-width:768px){
+      .fs-hero-inner{ grid-template-columns:1fr; }
+      .fs-badge-big { display:none; }
+      .fs-stats { gap:1.2rem; }
+    }
+    @media(max-width:480px){
+      .fs-hero{ padding:2.5rem 1.2rem 2rem; }
+      .fs-page-body{ padding:1.5rem 1.2rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">Ven<span>dora</span></a>
+      <ul class="navbar-menu" id="navMenu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#categories">Kategori</a></li>
+        <li><a href="index.html#products">Produk</a></li>
+        <li><a href="index.html#vendors">Vendor</a></li>
+        <li><a href="#">Tentang</a></li>
+      </ul>
+      <div class="navbar-icons">
+        <button title="Cari">🔍</button>
+        <button title="Wishlist">🤍</button>
+        <button title="Keranjang" onclick="window.location.href='cart.html'">
+          🛒<span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button class="navbar-toggle" id="navToggle" title="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="fs-hero">
+    <div class="fs-orb fs-orb-1"></div>
+    <div class="fs-orb fs-orb-2"></div>
+    <div class="fs-hero-inner">
+      <div>
+        <div class="fs-live-tag"><span class="fs-live-dot"></span> Flash Sale Sedang Berlangsung</div>
+        <h1 class="fs-hero-title">
+          Diskon Hingga<br>
+          <span class="fire-text">70% Off!</span>
+        </h1>
+        <p class="fs-hero-sub">Penawaran terbatas untuk produk pilihan terbaik. Segera klaim sebelum kehabisan!</p>
+
+        <div class="fs-countdown-label">⏳ Berakhir dalam</div>
+        <div class="fs-countdown">
+          <div class="fs-count-block"><span class="fs-count-num" id="cd-h">00</span><span class="fs-count-lbl">Jam</span></div>
+          <span class="fs-colon">:</span>
+          <div class="fs-count-block"><span class="fs-count-num" id="cd-m">00</span><span class="fs-count-lbl">Menit</span></div>
+          <span class="fs-colon">:</span>
+          <div class="fs-count-block"><span class="fs-count-num" id="cd-s">00</span><span class="fs-count-lbl">Detik</span></div>
+        </div>
+
+        <div class="fs-stats">
+          <div class="fs-stat-item">
+            <span class="fs-stat-num red" id="statProducts">0</span>
+            <span class="fs-stat-txt">Produk Promo</span>
+          </div>
+          <div class="fs-stat-item">
+            <span class="fs-stat-num orange">Hingga</span>
+            <span class="fs-stat-txt">Hemat Maksimal</span>
+          </div>
+          <div class="fs-stat-item">
+            <span class="fs-stat-num yellow">24 Jam</span>
+            <span class="fs-stat-txt">Penawaran Harian</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fs-badge-big">
+        <div class="fs-badge-inner">
+          <div class="fs-badge-pct">70%</div>
+          <div class="fs-badge-off">OFF</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER TABS -->
+  <div class="fs-tabs-wrap">
+    <div class="fs-tabs">
+      <button class="fs-tab active" data-filter="all" onclick="filterFS('all',this)">
+        <iconify-icon icon="solar:fire-bold"></iconify-icon> Semua Promo
+      </button>
+      <button class="fs-tab" data-filter="furniture" onclick="filterFS('furniture',this)">
+        <iconify-icon icon="solar:sofa-linear"></iconify-icon> Furniture
+      </button>
+      <button class="fs-tab" data-filter="fashion" onclick="filterFS('fashion',this)">
+        <iconify-icon icon="hugeicons:dress-03"></iconify-icon> Fashion
+      </button>
+      <button class="fs-tab" data-filter="elektronik" onclick="filterFS('elektronik',this)">
+        <iconify-icon icon="solar:laptop-linear"></iconify-icon> Elektronik
+      </button>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="fs-page-body">
+    <div class="fs-section-header">
+      <h2 class="fs-section-title">🔥 Produk Flash Sale</h2>
+      <span class="fs-result-count" id="fsCount"><strong>0</strong> produk ditemukan</span>
+    </div>
+    <div id="fsProductGrid"></div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"><span>✅</span><span id="toastMsg">Berhasil!</span></div>
+
+  <script src="script.js"></script>
+  <script>
+    /* =============================================
+       FLASH SALE PAGE LOGIC
+    ============================================= */
+
+    /* --- Countdown Timer --- */
+    function startCountdown() {
+      // Set target: end of today at 23:59:59
+      const now   = new Date();
+      const end   = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+
+      function tick() {
+        const diff = end - new Date();
+        if (diff <= 0) { document.getElementById('cd-h').textContent = '00'; return; }
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+        document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+        document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+      }
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    /* --- Promo products: badge = "sale" OR originalPrice exists OR badge = "hot" --- */
+    function getPromoProducts(filterCat = 'all') {
+      const promo = products.filter(p =>
+        p.badge === 'sale' || p.badge === 'hot' || (p.originalPrice && p.originalPrice > p.price)
+      );
+      if (filterCat === 'all') return promo;
+      return promo.filter(p => p.category === filterCat);
+    }
+
+    let currentFilter = 'all';
+
+    function filterFS(cat, btn) {
+      currentFilter = cat;
+      document.querySelectorAll('.fs-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      renderFSProducts(cat);
+    }
+
+    function renderFSProducts(filterCat = 'all') {
+      const grid    = document.getElementById('fsProductGrid');
+      const countEl = document.getElementById('fsCount');
+      const list    = getPromoProducts(filterCat);
+
+      // update stat
+      const statEl = document.getElementById('statProducts');
+      if (statEl) statEl.textContent = getPromoProducts('all').length;
+
+      grid.innerHTML = '';
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="fs-empty">
+            <iconify-icon icon="solar:tag-price-linear"></iconify-icon>
+            <h3>Belum ada promo di kategori ini</h3>
+            <p>Cek kembali nanti atau pilih kategori lain.</p>
+          </div>`;
+        if (countEl) countEl.innerHTML = '<strong>0</strong> produk ditemukan';
+        return;
+      }
+
+      if (countEl) countEl.innerHTML = `<strong>${list.length}</strong> produk ditemukan`;
+
+      list.forEach((p, idx) => {
+        const priceF    = formatRupiah(p.price);
+        const origF     = p.originalPrice ? formatRupiah(p.originalPrice) : '';
+        const disc      = p.discount ?? (p.originalPrice ? Math.round((1 - p.price/p.originalPrice)*100)+'%' : null);
+        const savings   = p.originalPrice ? formatRupiah(p.originalPrice - p.price) : null;
+
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.style.animationDelay = (idx * 0.05) + 's';
+        card.innerHTML = `
+          <div class="product-img" style="position:relative">
+            <img src="${p.image}" alt="${p.name}">
+            ${disc ? `<span class="fs-discount-tag">−${disc}</span>` : ''}
+            <button class="wishlist-btn" id="wish-fs-${p.id}" onclick="toggleWishlist(${p.id},event)">
+              <span>🤍</span>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-vendor">${p.vendor}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-rating">
+              <span class="stars">${p.rating}</span>
+              <span class="rating-count">(${p.ratingCount})</span>
+            </div>
+            <div class="product-price">
+              <span class="price-current">${priceF}</span>
+              ${p.originalPrice ? `<span class="price-original">${origF}</span>` : ''}
+            </div>
+            ${savings ? `<span class="fs-savings">Hemat ${savings}</span>` : ''}
+            <button class="btn-add-cart" onclick="event.stopPropagation();addToCart(${p.id})">
+              + Tambah ke Keranjang
+            </button>
+          </div>`;
+
+        card.addEventListener('click', () => { window.location.href = `product.html?id=${p.id}`; });
+        grid.appendChild(card);
+
+        // Wishlist state
+        if (wishlist.includes(p.id)) {
+          const btn = card.querySelector('.wishlist-btn');
+          if (btn) { btn.classList.add('active'); btn.querySelector('span').textContent = '❤️'; }
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartBadge();
+      startCountdown();
+      renderFSProducts('all');
+    });
+  </script>
+</body>
+</html>
