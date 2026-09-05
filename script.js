@@ -1412,6 +1412,18 @@ function addToCart(productId) {
 // =============================================
 let wishlist = JSON.parse(localStorage.getItem('nexmart_wishlist')) || [];
 
+function updateWishlistBadge() {
+  const badges = document.querySelectorAll('.wishlist-badge, #wishlistBadge');
+  const count = wishlist.length;
+  badges.forEach(badge => {
+    badge.textContent = count;
+    badge.style.transform = 'scale(1.25)';
+    setTimeout(() => {
+      badge.style.transform = 'scale(1)';
+    }, 200);
+  });
+}
+
 function toggleWishlist(productId, event) {
   if (event) event.stopPropagation();
   const btn = document.getElementById(`wish-${productId}`) || document.getElementById(`wish-cat-${productId}`) || document.getElementById(`wish-search-${productId}`);
@@ -1434,7 +1446,9 @@ function toggleWishlist(productId, event) {
   }
 
   localStorage.setItem('nexmart_wishlist', JSON.stringify(wishlist));
+  updateWishlistBadge();
 }
+
 
 
 // =============================================
@@ -1918,6 +1932,7 @@ function setupWishlistDetail() {
     }
 
     localStorage.setItem('nexmart_wishlist', JSON.stringify(wishlist));
+    updateWishlistBadge();
   });
 }
 
@@ -3051,12 +3066,572 @@ function removeSearchFilter(type, value) {
 
 
 // =============================================
+// WISHLIST PAGE LOGIC
+// =============================================
+let currentWishlistCategory = 'all';
+let currentWishlistSearch = '';
+let currentWishlistSort = 'recent';
+let currentWishlistView = 'grid';
+
+function getWishlistProductImage(img) {
+  if (!img) return 'img/sofafa.jpe';
+  if (img.startsWith('http') || img.startsWith('img/')) return img;
+  return 'img/' + img;
+}
+
+function initWishlistPage() {
+  updateWishlistBadge();
+  updateCartBadge();
+  renderWishlistCategoryPills();
+  renderWishlistGrid();
+  updateWishlistStats();
+}
+
+function updateWishlistStats() {
+  const totalItemsEl = document.getElementById('statTotalItems');
+  const totalValueEl = document.getElementById('statTotalValue');
+  const totalSavingsEl = document.getElementById('statTotalSavings');
+  const stockStatusEl = document.getElementById('statStockStatus');
+
+  if (!totalItemsEl) return;
+
+  const items = products.filter(p => wishlist.includes(p.id));
+  const totalItems = items.length;
+  const totalValue = items.reduce((sum, p) => sum + (p.price || 0), 0);
+  const totalSavings = items.reduce((sum, p) => {
+    if (p.originalPrice && p.originalPrice > p.price) {
+      return sum + (p.originalPrice - p.price);
+    }
+    return sum;
+  }, 0);
+
+  totalItemsEl.textContent = `${totalItems} Produk`;
+  totalValueEl.textContent = formatRupiah(totalValue);
+  totalSavingsEl.textContent = totalSavings > 0 ? formatRupiah(totalSavings) : 'Rp 0';
+  if (stockStatusEl) {
+    stockStatusEl.textContent = totalItems > 0 ? 'Semua Tersedia' : 'Belum Ada';
+  }
+}
+
+function renderWishlistCategoryPills() {
+  const pillsContainer = document.getElementById('wishlistCategoryPills');
+  if (!pillsContainer) return;
+
+  const items = products.filter(p => wishlist.includes(p.id));
+  const countAll = items.length;
+
+  const catCounts = {};
+  items.forEach(p => {
+    const cat = (p.category || 'lainnya').toLowerCase();
+    catCounts[cat] = (catCounts[cat] || 0) + 1;
+  });
+
+  let html = `
+    <button class="cat-pill ${currentWishlistCategory === 'all' ? 'active' : ''}" data-category="all" onclick="filterWishlistCategory('all')">
+      <span>Semua</span>
+      <span class="pill-count" id="countAll">${countAll}</span>
+    </button>
+  `;
+
+  const categoriesList = [
+    { slug: 'furniture', name: 'Furniture' },
+    { slug: 'fashion', name: 'Fashion' },
+    { slug: 'elektronik', name: 'Elektronik' },
+    { slug: 'dapur', name: 'Dapur' },
+    { slug: 'kecantikan', name: 'Kecantikan' }
+  ];
+
+  categoriesList.forEach(cat => {
+    const count = catCounts[cat.slug] || 0;
+    if (count > 0 || currentWishlistCategory === cat.slug) {
+      html += `
+        <button class="cat-pill ${currentWishlistCategory === cat.slug ? 'active' : ''}" data-category="${cat.slug}" onclick="filterWishlistCategory('${cat.slug}')">
+          <span>${cat.name}</span>
+          <span class="pill-count">${count}</span>
+        </button>
+      `;
+    }
+  });
+
+  pillsContainer.innerHTML = html;
+}
+
+function filterWishlistCategory(catSlug) {
+  currentWishlistCategory = catSlug;
+  renderWishlistCategoryPills();
+  renderWishlistGrid();
+}
+
+function handleWishlistSearch(query) {
+  currentWishlistSearch = query.trim().toLowerCase();
+  const clearBtn = document.getElementById('searchClearBtn');
+  if (clearBtn) {
+    clearBtn.style.display = currentWishlistSearch ? 'flex' : 'none';
+  }
+  renderWishlistGrid();
+}
+
+function clearWishlistSearch() {
+  const searchInput = document.getElementById('wishlistSearchInput');
+  if (searchInput) searchInput.value = '';
+  currentWishlistSearch = '';
+  const clearBtn = document.getElementById('searchClearBtn');
+  if (clearBtn) clearBtn.style.display = 'none';
+  renderWishlistGrid();
+}
+
+function handleWishlistSort(sortBy) {
+  currentWishlistSort = sortBy;
+  renderWishlistGrid();
+}
+
+function setWishlistView(mode) {
+  currentWishlistView = mode;
+  const gridContainer = document.getElementById('wishlistGrid');
+  const btnGrid = document.getElementById('btnGridView');
+  const btnList = document.getElementById('btnListView');
+
+  if (mode === 'list') {
+    if (gridContainer) {
+      gridContainer.classList.remove('grid-mode');
+      gridContainer.classList.add('list-mode');
+    }
+    if (btnList) btnList.classList.add('active');
+    if (btnGrid) btnGrid.classList.remove('active');
+  } else {
+    if (gridContainer) {
+      gridContainer.classList.remove('list-mode');
+      gridContainer.classList.add('grid-mode');
+    }
+    if (btnGrid) btnGrid.classList.add('active');
+    if (btnList) btnList.classList.remove('active');
+  }
+
+  renderWishlistGrid();
+}
+
+function renderWishlistGrid() {
+  const grid = document.getElementById('wishlistGrid');
+  const emptyState = document.getElementById('wishlistEmpty');
+  const toolbar = document.getElementById('wishlistToolbar');
+  const activeFilterBar = document.getElementById('activeFilterBar');
+  const filterStatusText = document.getElementById('filterStatusText');
+
+  if (!grid) return;
+
+  if (wishlist.length === 0) {
+    grid.style.display = 'none';
+    if (toolbar) toolbar.style.display = 'none';
+    if (activeFilterBar) activeFilterBar.style.display = 'none';
+    if (emptyState) emptyState.style.display = 'block';
+    renderEmptyRecommendations();
+    updateWishlistStats();
+    return;
+  }
+
+  if (emptyState) emptyState.style.display = 'none';
+  if (toolbar) toolbar.style.display = 'flex';
+  grid.style.display = currentWishlistView === 'list' ? 'flex' : 'grid';
+
+  let items = products.filter(p => wishlist.includes(p.id));
+
+  if (currentWishlistCategory !== 'all') {
+    items = items.filter(p => (p.category || '').toLowerCase() === currentWishlistCategory);
+  }
+
+  if (currentWishlistSearch) {
+    items = items.filter(p =>
+      p.name.toLowerCase().includes(currentWishlistSearch) ||
+      (p.vendor && p.vendor.toLowerCase().includes(currentWishlistSearch))
+    );
+  }
+
+  if (currentWishlistCategory !== 'all' || currentWishlistSearch) {
+    if (activeFilterBar) activeFilterBar.style.display = 'flex';
+    if (filterStatusText) {
+      let msg = `Menampilkan ${items.length} produk`;
+      if (currentWishlistCategory !== 'all') msg += ` dalam kategori "${currentWishlistCategory}"`;
+      if (currentWishlistSearch) msg += ` dengan kata kunci "${currentWishlistSearch}"`;
+      filterStatusText.textContent = msg;
+    }
+  } else {
+    if (activeFilterBar) activeFilterBar.style.display = 'none';
+  }
+
+  if (currentWishlistSort === 'price-asc') {
+    items.sort((a, b) => a.price - b.price);
+  } else if (currentWishlistSort === 'price-desc') {
+    items.sort((a, b) => b.price - a.price);
+  } else if (currentWishlistSort === 'discount-desc') {
+    items.sort((a, b) => {
+      const discA = a.originalPrice ? (a.originalPrice - a.price) : 0;
+      const discB = b.originalPrice ? (b.originalPrice - b.price) : 0;
+      return discB - discA;
+    });
+  } else if (currentWishlistSort === 'name-asc') {
+    items.sort((a, b) => a.name.localeCompare(b.name));
+  } else {
+    items.sort((a, b) => wishlist.indexOf(b.id) - wishlist.indexOf(a.id));
+  }
+
+  if (items.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align: center; padding: 3.5rem 1.5rem; background: #fff; border-radius: 16px; border: 1px solid var(--gray-light);">
+        <iconify-icon icon="solar:magnifer-broken-bold-duotone" style="font-size: 3.2rem; color: var(--accent); margin-bottom: 0.8rem;"></iconify-icon>
+        <h3 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 0.4rem; color: var(--dark);">Tidak ada produk yang cocok</h3>
+        <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 1.3rem;">Coba sesuaikan kata kunci pencarian atau ubah filter kategori Anda.</p>
+        <button onclick="resetWishlistFilters()" style="padding: 0.65rem 1.5rem; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+          Reset Filter
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = '';
+  items.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'w-card';
+    card.id = `wcard-${product.id}`;
+
+    const priceFormatted = formatRupiah(product.price);
+    const origPriceFormatted = product.originalPrice ? formatRupiah(product.originalPrice) : '';
+    const discountHTML = product.originalPrice
+      ? `<span class="w-price-original">${origPriceFormatted}</span>
+         <span class="w-discount-pill">-${product.discount || 'Sale'}</span>`
+      : '';
+
+    const badgeHTML = product.badge
+      ? `<span class="w-badge-pill ${product.badge}">${product.badgeText || product.badge}</span>`
+      : (product.discount ? `<span class="w-badge-pill sale">Diskon</span>` : '');
+
+    const imgUrl = getWishlistProductImage(product.image);
+
+    if (currentWishlistView === 'list') {
+      card.innerHTML = `
+        <div class="w-card-media" onclick="window.location.href='product.html?id=${product.id}'">
+          <img src="${imgUrl}" alt="${product.name}" class="w-card-img" onerror="this.onerror=null; this.src='img/sofafa.jpe';">
+          ${badgeHTML}
+          <button class="w-card-remove-btn" title="Hapus dari wishlist" onclick="removeWishlistItem(${product.id}, event)">
+            <iconify-icon icon="solar:trash-bin-trash-bold"></iconify-icon>
+          </button>
+        </div>
+        <div class="w-card-body">
+          <div class="w-card-info-col">
+            <div class="w-card-meta-row">
+              <span class="w-vendor-name"><iconify-icon icon="solar:shop-2-bold"></iconify-icon> ${product.vendor}</span>
+              <span class="w-stock-pill"><span class="w-stock-dot"></span> Ready Stock</span>
+            </div>
+            <a href="product.html?id=${product.id}" class="w-card-title">${product.name}</a>
+            <div class="w-rating-row">
+              <span class="w-stars">${product.rating || '★★★★★'}</span>
+              <span class="w-rating-count">(${product.ratingCount || 45})</span>
+            </div>
+          </div>
+          <div class="w-card-actions-col">
+            <div class="w-price-row">
+              <span class="w-price-current">${priceFormatted}</span>
+              ${discountHTML}
+            </div>
+            <div class="w-card-actions">
+              <button class="btn-w-add-cart" onclick="moveWishlistItemToCart(${product.id}, event)">
+                <iconify-icon icon="solar:cart-large-bold"></iconify-icon>
+                <span>+ Ke Keranjang</span>
+              </button>
+              <button class="btn-w-item-share" title="Bagikan Produk" onclick="shareIndividualItem(${product.id}, event)">
+                <iconify-icon icon="solar:share-linear"></iconify-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      card.innerHTML = `
+        <div class="w-card-media" onclick="window.location.href='product.html?id=${product.id}'">
+          <img src="${imgUrl}" alt="${product.name}" class="w-card-img" onerror="this.onerror=null; this.src='img/sofafa.jpe';">
+          ${badgeHTML}
+          <button class="w-card-remove-btn" title="Hapus dari wishlist" onclick="removeWishlistItem(${product.id}, event)">
+            <iconify-icon icon="solar:trash-bin-trash-bold"></iconify-icon>
+          </button>
+        </div>
+        <div class="w-card-body">
+          <div class="w-card-meta-row">
+            <span class="w-vendor-name"><iconify-icon icon="solar:shop-2-bold"></iconify-icon> ${product.vendor}</span>
+            <span class="w-stock-pill"><span class="w-stock-dot"></span> Ready Stock</span>
+          </div>
+          <a href="product.html?id=${product.id}" class="w-card-title">${product.name}</a>
+          <div class="w-rating-row">
+            <span class="w-stars">${product.rating || '★★★★★'}</span>
+            <span class="w-rating-count">(${product.ratingCount || 45})</span>
+          </div>
+          <div class="w-price-row">
+            <span class="w-price-current">${priceFormatted}</span>
+            ${discountHTML}
+          </div>
+          <div class="w-card-actions">
+            <button class="btn-w-add-cart" onclick="moveWishlistItemToCart(${product.id}, event)">
+              <iconify-icon icon="solar:cart-large-bold"></iconify-icon>
+              <span>+ Ke Keranjang</span>
+            </button>
+            <button class="btn-w-item-share" title="Bagikan Produk" onclick="shareIndividualItem(${product.id}, event)">
+              <iconify-icon icon="solar:share-linear"></iconify-icon>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    grid.appendChild(card);
+  });
+}
+
+function resetWishlistFilters() {
+  currentWishlistCategory = 'all';
+  currentWishlistSearch = '';
+  const searchInput = document.getElementById('wishlistSearchInput');
+  if (searchInput) searchInput.value = '';
+  const clearBtn = document.getElementById('searchClearBtn');
+  if (clearBtn) clearBtn.style.display = 'none';
+  renderWishlistCategoryPills();
+  renderWishlistGrid();
+}
+
+function removeWishlistItem(productId, event) {
+  if (event) event.stopPropagation();
+  const card = document.getElementById(`wcard-${productId}`);
+  if (card) {
+    card.classList.add('removing');
+  }
+
+  setTimeout(() => {
+    const idx = wishlist.indexOf(productId);
+    if (idx !== -1) {
+      wishlist.splice(idx, 1);
+      localStorage.setItem('nexmart_wishlist', JSON.stringify(wishlist));
+      updateWishlistBadge();
+      updateWishlistStats();
+      renderWishlistCategoryPills();
+      renderWishlistGrid();
+      showToast('Produk berhasil dihapus dari wishlist');
+    }
+  }, 320);
+}
+
+function moveWishlistItemToCart(productId, event) {
+  if (event) event.stopPropagation();
+  addToCart(productId);
+  showToast('Produk ditambahkan ke keranjang belanja! 🛒');
+}
+
+function moveAllWishlistToCart() {
+  if (wishlist.length === 0) {
+    showToast('Wishlist Anda masih kosong!');
+    return;
+  }
+
+  let addedCount = 0;
+  wishlist.forEach(productId => {
+    const product = products.find(p => p.id === productId);
+    if (product) {
+      const existing = cart.find(item => item.id === productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          vendor: product.vendor,
+          qty: 1
+        });
+      }
+      addedCount++;
+    }
+  });
+
+  saveCart();
+  updateCartBadge();
+  showToast(`${addedCount} produk berhasil dipindahkan ke keranjang! 🛒`);
+}
+
+function openClearWishlistModal() {
+  const modal = document.getElementById('clearModalBackdrop');
+  if (modal) modal.classList.add('active');
+}
+
+function closeClearWishlistModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  const modal = document.getElementById('clearModalBackdrop');
+  if (modal) modal.classList.remove('active');
+}
+
+function confirmClearWishlist() {
+  wishlist = [];
+  localStorage.setItem('nexmart_wishlist', JSON.stringify(wishlist));
+  closeClearWishlistModal();
+  updateWishlistBadge();
+  updateWishlistStats();
+  renderWishlistCategoryPills();
+  renderWishlistGrid();
+  showToast('Seluruh produk wishlist telah dikosongkan');
+}
+
+function openShareModal() {
+  const modal = document.getElementById('shareModalBackdrop');
+  const input = document.getElementById('shareLinkInput');
+  if (input) {
+    input.value = `${window.location.origin}${window.location.pathname}?share=${wishlist.join('-')}`;
+  }
+  if (modal) modal.classList.add('active');
+}
+
+function closeShareModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  const modal = document.getElementById('shareModalBackdrop');
+  if (modal) modal.classList.remove('active');
+}
+
+function copyShareLink() {
+  const input = document.getElementById('shareLinkInput');
+  const copyBtnText = document.getElementById('copyBtnText');
+  const copyIcon = document.getElementById('copyIcon');
+
+  if (input) {
+    input.select();
+    navigator.clipboard.writeText(input.value).then(() => {
+      if (copyBtnText) copyBtnText.textContent = 'Tersalin! ✓';
+      if (copyIcon) copyIcon.setAttribute('icon', 'solar:check-circle-bold');
+      showToast('Tautan wishlist berhasil disalin ke clipboard! 📋');
+
+      setTimeout(() => {
+        if (copyBtnText) copyBtnText.textContent = 'Salin';
+        if (copyIcon) copyIcon.setAttribute('icon', 'solar:copy-linear');
+      }, 2500);
+    }).catch(() => {
+      showToast('Gagal menyalin tautan');
+    });
+  }
+}
+
+function shareIndividualItem(productId, event) {
+  if (event) event.stopPropagation();
+  const url = `${window.location.origin}/product.html?id=${productId}`;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => {
+      showToast('Tautan produk disalin ke clipboard! 📋');
+    });
+  } else {
+    showToast('Tautan: ' + url);
+  }
+}
+
+function shareToSocial(platform, event) {
+  if (event) event.preventDefault();
+  const shareUrl = encodeURIComponent(`${window.location.origin}${window.location.pathname}?share=${wishlist.join('-')}`);
+  const shareText = encodeURIComponent('Lihat koleksi produk impian saya di Vendora Marketplace:');
+
+  let targetUrl = '';
+  if (platform === 'whatsapp') {
+    targetUrl = `https://api.whatsapp.com/send?text=${shareText}%20${shareUrl}`;
+  } else if (platform === 'telegram') {
+    targetUrl = `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
+  } else if (platform === 'twitter') {
+    targetUrl = `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareText}`;
+  }
+
+  if (targetUrl) {
+    window.open(targetUrl, '_blank', 'width=600,height=450');
+  }
+}
+
+function renderEmptyRecommendations() {
+  const recGrid = document.getElementById('emptyRecommendationsGrid');
+  if (!recGrid) return;
+
+  const recItems = products.slice(0, 4);
+
+  recGrid.innerHTML = '';
+  recItems.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'w-card';
+    const imgUrl = getWishlistProductImage(product.image);
+    const priceFormatted = formatRupiah(product.price);
+    const isWish = wishlist.includes(product.id);
+
+    card.innerHTML = `
+      <div class="w-card-media" onclick="window.location.href='product.html?id=${product.id}'">
+        <img src="${imgUrl}" alt="${product.name}" class="w-card-img" onerror="this.onerror=null; this.src='img/sofafa.jpe';">
+        <button class="w-card-remove-btn" title="Simpan ke wishlist" style="color: ${isWish ? '#c0392b' : '#7a7a7a'}" onclick="quickToggleEmptyWishlist(${product.id}, this, event)">
+          <iconify-icon icon="${isWish ? 'solar:heart-bold' : 'solar:heart-linear'}"></iconify-icon>
+        </button>
+      </div>
+      <div class="w-card-body">
+        <div class="w-card-meta-row">
+          <span class="w-vendor-name"><iconify-icon icon="solar:shop-2-bold"></iconify-icon> ${product.vendor}</span>
+          <span class="w-stock-pill"><span class="w-stock-dot"></span> Ready</span>
+        </div>
+        <a href="product.html?id=${product.id}" class="w-card-title">${product.name}</a>
+        <div class="w-rating-row">
+          <span class="w-stars">${product.rating || '★★★★★'}</span>
+          <span class="w-rating-count">(${product.ratingCount || 50})</span>
+        </div>
+        <div class="w-price-row">
+          <span class="w-price-current">${priceFormatted}</span>
+        </div>
+        <div class="w-card-actions">
+          <button class="btn-w-add-cart" onclick="quickAddRecToWishlist(${product.id}, event)">
+            <iconify-icon icon="solar:heart-add-bold"></iconify-icon>
+            <span>Tambah ke Wishlist</span>
+          </button>
+        </div>
+      </div>
+    `;
+
+    recGrid.appendChild(card);
+  });
+}
+
+function quickAddRecToWishlist(productId, event) {
+  if (event) event.stopPropagation();
+  if (!wishlist.includes(productId)) {
+    wishlist.push(productId);
+    localStorage.setItem('nexmart_wishlist', JSON.stringify(wishlist));
+    updateWishlistBadge();
+    showToast('Produk ditambahkan ke wishlist! ❤️');
+    renderWishlistCategoryPills();
+    renderWishlistGrid();
+    updateWishlistStats();
+  }
+}
+
+function quickToggleEmptyWishlist(productId, btn, event) {
+  if (event) event.stopPropagation();
+  const idx = wishlist.indexOf(productId);
+  if (idx === -1) {
+    wishlist.push(productId);
+    showToast('Ditambahkan ke wishlist! ❤️');
+  } else {
+    wishlist.splice(idx, 1);
+    showToast('Dihapus dari wishlist');
+  }
+  localStorage.setItem('nexmart_wishlist', JSON.stringify(wishlist));
+  updateWishlistBadge();
+  renderWishlistCategoryPills();
+  renderWishlistGrid();
+  updateWishlistStats();
+}
+
+
+// =============================================
 // INISIALISASI HALAMAN
 // =============================================
 document.addEventListener('DOMContentLoaded', () => {
   updateCartBadge();
+  updateWishlistBadge();
 
-  if (document.getElementById('productsGrid')) {
+  if (document.getElementById('wishlistGrid')) {
+    initWishlistPage();
+  } else if (document.getElementById('productsGrid')) {
     renderCategories();
     fetchProductsFromAPI();
     renderVendors();

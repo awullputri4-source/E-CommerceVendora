@@ -451,8 +451,10 @@
         <li><a href="#">Tentang</a></li>
       </ul>
       <div class="navbar-icons">
-        <button title="Cari">🔍</button>
-        <button title="Wishlist">🤍</button>
+        <button title="Cari" onclick="window.location.href='search.html'">🔍</button>
+        <button title="Wishlist" onclick="window.location.href='wishlist.html'">
+          🤍<span class="wishlist-badge" id="wishlistBadge">0</span>
+        </button>
         <button title="Keranjang" onclick="window.location.href='cart.html'">
           🛒<span class="cart-badge" id="cartBadge">0</span>
         </button>

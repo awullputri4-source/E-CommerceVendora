@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wishlist Saya — Vendora Premium Store</title>
+
+  <!-- Iconify Icons -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <!-- Google Fonts: Playfair Display & DM Sans -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =============================================
+       NAVBAR
+  ============================================= -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar-logo">Ven<span>dora</span></a>
+
+      <!-- Menu navigasi desktop -->
+      <ul class="navbar-menu" id="navMenu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="index.html#categories">Kategori</a></li>
+        <li><a href="index.html#products">Produk</a></li>
+        <li><a href="index.html#vendors">Vendor</a></li>
+        <li><a href="wishlist.html" class="active">Wishlist</a></li>
+        <li><a href="cart.html">Keranjang</a></li>
+      </ul>
+
+      <div class="navbar-icons">
+        <button title="Cari" onclick="window.location.href='search.html'"><i class="bi bi-search"></i></button>
+        <button title="Wishlist" class="nav-icon-active" onclick="window.location.href='wishlist.html'">
+          <i class="bi bi-heart-fill" style="color: #c0392b;"></i>
+          <span class="wishlist-badge" id="wishlistBadge">0</span>
+        </button>
+        <button title="Keranjang" onclick="window.location.href='cart.html'">
+          <i class="bi bi-bag"></i>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button class="navbar-toggle" id="navToggle" title="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- =============================================
+       ANNOUNCEMENT BAR
+  ============================================= -->
+  <div class="announcement">
+    ✨ Simpan produk favorit Anda dan dapatkan notifikasi instan saat harga turun atau diskon spesial berlaku!
+  </div>
+
+  <!-- =============================================
+       BREADCRUMB
+  ============================================= -->
+  <div class="wishlist-breadcrumb-wrap">
+    <div class="wishlist-container">
+      <nav class="breadcrumb-nav">
+        <a href="index.html"><iconify-icon icon="solar:home-2-linear"></iconify-icon> Beranda</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Wishlist Saya</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- =============================================
+       HERO & STATS SECTION
+  ============================================= -->
+  <section class="wishlist-hero-section">
+    <div class="wishlist-container">
+      <div class="wishlist-header-row">
+        <div class="wishlist-title-group">
+          <div class="wishlist-pretitle">
+            <span class="sparkle-icon">✦</span> Kurasi Eksklusif Favorit Anda
+          </div>
+          <h1 class="wishlist-title">
+            Wishlist <em>Impian</em> Saya
+          </h1>
+          <p class="wishlist-subtitle">
+            Daftar produk idaman dari vendor terbaik pilihan Anda. Simpan sekarang dan checkout dengan mudah kapan saja.
+          </p>
+        </div>
+
+        <!-- Metric Stat Cards -->
+        <div class="wishlist-stats-grid" id="wishlistStatsGrid">
+          <div class="wishlist-stat-card">
+            <div class="stat-icon-wrapper" style="background: rgba(150, 117, 91, 0.12); color: var(--accent);">
+              <iconify-icon icon="solar:heart-angle-bold"></iconify-icon>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Tersimpan</span>
+              <span class="stat-value" id="statTotalItems">0 Produk</span>
+            </div>
+          </div>
+
+          <div class="wishlist-stat-card">
+            <div class="stat-icon-wrapper" style="background: rgba(46, 125, 50, 0.12); color: #2e7d32;">
+              <iconify-icon icon="solar:wallet-money-bold"></iconify-icon>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Nilai</span>
+              <span class="stat-value" id="statTotalValue">Rp 0</span>
+            </div>
+          </div>
+
+          <div class="wishlist-stat-card">
+            <div class="stat-icon-wrapper" style="background: rgba(192, 57, 43, 0.12); color: #c0392b;">
+              <iconify-icon icon="solar:tag-price-bold"></iconify-icon>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Potensi Hemat</span>
+              <span class="stat-value" id="statTotalSavings">Rp 0</span>
+            </div>
+          </div>
+
+          <div class="wishlist-stat-card">
+            <div class="stat-icon-wrapper" style="background: rgba(30, 136, 229, 0.12); color: #1e88e5;">
+              <iconify-icon icon="solar:box-minimalistic-bold"></iconify-icon>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Ketersediaan</span>
+              <span class="stat-value" id="statStockStatus">Ready Stock</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       MAIN WISHLIST CONTENT & TOOLBAR
+  ============================================= -->
+  <main class="wishlist-main-section">
+    <div class="wishlist-container">
+
+      <!-- TOOLBAR KONTROL -->
+      <div class="wishlist-toolbar-wrap" id="wishlistToolbar">
+        
+        <!-- Category Filter Pills -->
+        <div class="wishlist-category-pills" id="wishlistCategoryPills">
+          <button class="cat-pill active" data-category="all" onclick="filterWishlistCategory('all')">
+            <span>Semua</span>
+            <span class="pill-count" id="countAll">0</span>
+          </button>
+          <!-- Dynamic Category Pills inserted via JS -->
+        </div>
+
+        <!-- Filter, Sort, Search, View Controls -->
+        <div class="wishlist-controls-row">
+          
+          <!-- Search in Wishlist -->
+          <div class="wishlist-search-box">
+            <iconify-icon icon="solar:magnifer-linear" class="search-box-icon"></iconify-icon>
+            <input type="text" id="wishlistSearchInput" placeholder="Cari dalam wishlist..." oninput="handleWishlistSearch(this.value)" autocomplete="off">
+            <button type="button" class="search-clear-btn" id="searchClearBtn" onclick="clearWishlistSearch()" style="display:none;">
+              <iconify-icon icon="solar:close-circle-bold"></iconify-icon>
+            </button>
+          </div>
+
+          <!-- Sort Dropdown -->
+          <div class="wishlist-sort-wrap">
+            <label for="wishlistSortSelect" class="sort-label">Urutkan:</label>
+            <div class="sort-select-wrapper">
+              <select id="wishlistSortSelect" onchange="handleWishlistSort(this.value)">
+                <option value="recent">Terbaru Ditambahkan</option>
+                <option value="price-asc">Harga: Rendah ke Tinggi</option>
+                <option value="price-desc">Harga: Tinggi ke Rendah</option>
+                <option value="discount-desc">Diskon Terbesar</option>
+                <option value="name-asc">Nama Produk: A-Z</option>
+              </select>
+              <iconify-icon icon="solar:alt-arrow-down-linear" class="select-chevron"></iconify-icon>
+            </div>
+          </div>
+
+          <!-- View Mode Toggle (Grid / List) -->
+          <div class="wishlist-view-toggle">
+            <button class="view-btn active" id="btnGridView" onclick="setWishlistView('grid')" title="Tampilan Grid">
+              <iconify-icon icon="solar:widget-5-bold"></iconify-icon>
+            </button>
+            <button class="view-btn" id="btnListView" onclick="setWishlistView('list')" title="Tampilan Daftar">
+              <iconify-icon icon="solar:list-bold"></iconify-icon>
+            </button>
+          </div>
+
+          <!-- Bulk Actions & Share -->
+          <div class="wishlist-action-btns">
+            <button class="btn-wishlist-share" onclick="openShareModal()" title="Bagikan Wishlist">
+              <iconify-icon icon="solar:share-linear"></iconify-icon>
+              <span>Bagikan</span>
+            </button>
+            <button class="btn-wishlist-cart-all" id="btnMoveAllToCart" onclick="moveAllWishlistToCart()">
+              <iconify-icon icon="solar:cart-large-minimalistic-bold"></iconify-icon>
+              <span>Pindahkan Semua</span>
+            </button>
+            <button class="btn-wishlist-clear" onclick="openClearWishlistModal()" title="Kosongkan Wishlist">
+              <iconify-icon icon="solar:trash-bin-trash-linear"></iconify-icon>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ACTIVE FILTER BADGE ROW (when search or filter active) -->
+      <div class="wishlist-active-filter-bar" id="activeFilterBar" style="display: none;">
+        <span class="filter-status-text" id="filterStatusText">Menampilkan hasil pencarian</span>
+        <button class="btn-reset-filters" onclick="resetWishlistFilters()">
+          <iconify-icon icon="solar:restart-linear"></iconify-icon> Reset Filter
+        </button>
+      </div>
+
+      <!-- WISHLIST PRODUCTS GRID / LIST CONTAINER -->
+      <div class="wishlist-grid-container grid-mode" id="wishlistGrid">
+        <!-- Dynamic Wishlist Cards injected by script.js -->
+      </div>
+
+      <!-- EMPTY STATE CONTAINER (shown when wishlist has 0 items) -->
+      <div class="wishlist-empty-state" id="wishlistEmpty" style="display: none;">
+        <div class="empty-icon-halo">
+          <div class="empty-icon-inner">
+            <iconify-icon icon="solar:heart-broken-bold-duotone"></iconify-icon>
+          </div>
+        </div>
+        <h2 class="empty-title">Wishlist Anda Masih Kosong</h2>
+        <p class="empty-desc">
+          Belum ada produk impian yang Anda simpan. Mulai eksplorasi koleksi furnitur, elektronik, fashion, dan perlengkapan premium kami sekarang!
+        </p>
+        <div class="empty-action-row">
+          <a href="index.html#products" class="btn-empty-shop">
+            <iconify-icon icon="solar:bag-3-bold"></iconify-icon> Jelajahi Produk Populer
+          </a>
+          <a href="category.html" class="btn-empty-category">
+            <iconify-icon icon="solar:layers-minimalistic-bold"></iconify-icon> Lihat Semua Kategori
+          </a>
+        </div>
+
+        <!-- Curated Recommendations when Empty -->
+        <div class="wishlist-empty-recommendations">
+          <div class="rec-header">
+            <div class="rec-title">
+              <span class="sparkle-gold">✦</span> Rekomendasi Pilihan Untuk Anda
+            </div>
+            <p class="rec-subtitle">Produk terlaris dengan rating tertinggi minggu ini</p>
+          </div>
+          <div class="rec-products-grid" id="emptyRecommendationsGrid">
+            <!-- Dynamic Curated Cards -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =============================================
+       MODAL: BAGIKAN WISHLIST
+  ============================================= -->
+  <div class="wishlist-modal-backdrop" id="shareModalBackdrop" onclick="closeShareModal(event)">
+    <div class="wishlist-modal-dialog" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div class="modal-icon-badge">
+            <iconify-icon icon="solar:share-bold"></iconify-icon>
+          </div>
+          <div>
+            <h3 class="modal-title">Bagikan Wishlist Saya</h3>
+            <p class="modal-subtitle">Kirim tautan koleksi produk impian Anda kepada teman atau keluarga</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeShareModal()">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <label class="modal-label">Tautan Publik Wishlist</label>
+        <div class="share-link-input-group">
+          <input type="text" id="shareLinkInput" readonly value="https://vendora.id/wishlist?share=my-curated-list">
+          <button type="button" class="btn-copy-link" id="btnCopyLink" onclick="copyShareLink()">
+            <iconify-icon icon="solar:copy-linear" id="copyIcon"></iconify-icon>
+            <span id="copyBtnText">Salin</span>
+          </button>
+        </div>
+
+        <div class="share-social-grid">
+          <a href="#" class="share-social-btn whatsapp" onclick="shareToSocial('whatsapp', event)">
+            <iconify-icon icon="logos:whatsapp-icon"></iconify-icon>
+            <span>WhatsApp</span>
+          </a>
+          <a href="#" class="share-social-btn telegram" onclick="shareToSocial('telegram', event)">
+            <iconify-icon icon="logos:telegram"></iconify-icon>
+            <span>Telegram</span>
+          </a>
+          <a href="#" class="share-social-btn twitter" onclick="shareToSocial('twitter', event)">
+            <iconify-icon icon="logos:twitter"></iconify-icon>
+            <span>X / Twitter</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-secondary" onclick="closeShareModal()">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       MODAL: KONFIRMASI KOSONGKAN WISHLIST
+  ============================================= -->
+  <div class="wishlist-modal-backdrop" id="clearModalBackdrop" onclick="closeClearWishlistModal(event)">
+    <div class="wishlist-modal-dialog modal-dialog-danger" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div class="modal-icon-badge danger">
+            <iconify-icon icon="solar:danger-triangle-bold"></iconify-icon>
+          </div>
+          <div>
+            <h3 class="modal-title">Kosongkan Wishlist?</h3>
+            <p class="modal-subtitle">Tindakan ini akan menghapus semua produk dari daftar wishlist Anda.</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeClearWishlistModal()">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <p class="clear-confirm-text">
+          Apakah Anda yakin ingin menghapus seluruh produk favorit yang tersimpan? Anda dapat menyimpannya kembali nanti dari katalog produk.
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-secondary" onclick="closeClearWishlistModal()">Batal</button>
+        <button type="button" class="btn-modal-danger" onclick="confirmClearWishlist()">
+          <iconify-icon icon="solar:trash-bin-trash-bold"></iconify-icon> Ya, Kosongkan Wishlist
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Ven<span>dora</span></div>
+          <p class="footer-desc">
+            Platform belanja multi-vendor terpercaya dengan ribuan produk pilihan dari vendor terbaik di seluruh
+            Indonesia.
+          </p>
+          <div class="social-links">
+            <button class="social-btn"><iconify-icon icon="mdi:facebook"></iconify-icon></button>
+            <button class="social-btn"><iconify-icon icon="mdi:instagram"></iconify-icon></button>
+            <button class="social-btn"><iconify-icon icon="mdi:twitter"></iconify-icon></button>
+            <button class="social-btn"><iconify-icon icon="mdi:youtube"></iconify-icon></button>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Belanja</h4>
+          <ul>
+            <li><a href="index.html#products">Semua Produk</a></li>
+            <li><a href="flash-sale.html">Flash Sale</a></li>
+            <li><a href="new-arrivals.html">Produk Baru</a></li>
+            <li><a href="wishlist.html">Wishlist Saya</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Vendor</h4>
+          <ul>
+            <li><a href="index.html#vendors">Daftar Vendor</a></li>
+            <li><a href="#">Dashboard Vendor</a></li>
+            <li><a href="#">Syarat &amp; Ketentuan</a></li>
+            <li><a href="#">Panduan Berjualan</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Bantuan</h4>
+          <ul>
+            <li><a href="#">Pusat Bantuan</a></li>
+            <li><a href="#">Cara Pemesanan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Kontak Kami</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 Vendora. Hak cipta dilindungi.</span>
+        <span>Dibuat dengan ❤️ oleh Tim Vendora</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notifikasi Global -->
+  <div class="toast" id="toast">
+    <span id="toastIcon">✨</span>
+    <span id="toastMsg">Produk ditambahkan ke keranjang!</span>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+
+</html>
